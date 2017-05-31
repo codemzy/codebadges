@@ -1,0 +1,63 @@
+.badge {
+  text-align: center;
+}
+
+.outer {
+  display: inline-block;
+  background-color: #000;
+  border-radius: 50%;
+  font-family: 'Play', sans-serif;
+}
+
+.inner {
+  width: 200px;
+  height: 200px;
+  background-color: #000;
+  border: 4px solid #fff;
+  text-align: center;
+  color: #fff;
+  margin: 20px;
+  border-radius: 50%;
+}
+
+#points {
+  margin-top: 10%;
+  font-size: 120%;
+}
+
+#challenges {
+  margin-top: 10%;
+}
+
+#user {
+  font-size: 200%;
+  margin-top: 5%;
+  font-family: 'Permanent Marker', cursive;
+/*   text-transform: uppercase; */
+}
+
+.small {
+  font-size: 75%;
+}
+
+#completed {
+  margin-top: 10px;
+}
+
+/* Small badges */
+
+.badge-small {
+  font-size: 75%;
+}
+
+.badge-small .inner {
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+}
+
+/* Custom colors */
+
+#fcc .outer, #fcc .inner {
+  background-color: #006400;
+}
