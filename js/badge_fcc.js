@@ -5,7 +5,7 @@ $(document).ready(function() {
     var name = "codemzy";
     // get name from url parameter
     
-    // request user data from FCC api
+    // request user data from FCC (no api so scraping off user page)
     var url = 'https://www.freecodecamp.com/' + name;
     $.get(url, function(response) {
         var score = $(response).find('.flat-top.text-primary').text().split(' ')[1];
@@ -17,7 +17,7 @@ $(document).ready(function() {
         var dates = []; // array to hold years
         for (var i = 0; i < 3; i++) {
             // get the year
-            dates.push(parseInt($(date[i]).text().split(",")[1]));
+            dates.push(parseInt($(date[i]).text().split(",")[1], 10));
         }
         // sort lowest first
         dates.sort(function(a, b) {
@@ -27,6 +27,4 @@ $(document).ready(function() {
         $('#date').text(dates[0]);
     });
 
-    
-    
 });

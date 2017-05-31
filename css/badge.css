@@ -62,3 +62,8 @@
 #fcc .outer, #fcc .inner {
   background-color: #006400;
 }
+
+#fcc .inner {
+  background-image: url("../img/badges/icon_fcc.png");
+  background-repeat: repeat;
+}
