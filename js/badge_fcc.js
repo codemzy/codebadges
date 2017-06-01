@@ -9,22 +9,26 @@ $(document).ready(function() {
     var url = 'https://www.freecodecamp.com/' + name;
     $.get(url, function(response) {
         var score = $(response).find('.flat-top.text-primary').text().split(' ')[1];
-        $('#points').text(parseInt(score, 10));
-        var challenges = $(response).find('tbody tr').length;
-        $('#challenges').text(challenges);
+        var points = parseInt(score, 10); // get the users points
+        var challenges = $(response).find('tbody tr').length; // number of challenges completed
         // get the dates from the first item in each table
-        var date = $(response).find('tbody').find('tr:first td:eq(1)');
+        var dateArr = $(response).find('tbody').find('tr:first td:eq(1)');
         var dates = []; // array to hold years
         for (var i = 0; i < 3; i++) {
             // get the year
-            dates.push(parseInt($(date[i]).text().split(",")[1], 10));
+            dates.push(parseInt($(dateArr[i]).text().split(",")[1], 10));
         }
         // sort lowest first
         dates.sort(function(a, b) {
           return a - b;
         });
-        // update the date with the lowest date
-        $('#date').text(dates[0]);
+        var date = dates[0];
+        // update the inner html of badge with all the info
+        var html = '<div id="points">' + points + '</div><div class="small">points</div>' +
+        '<div id="user">' + name + '</div><div class="small">FreeCodeCamp Student</div>' +
+        '<div id="completed" class="small">Completed</div><div><span id="challenges">' + challenges + '</span> challenges</div>' +
+        '<div class="small">since <span id="date">' + date + '</span></div>';
+        $('#fcc .inner').html(html);
     });
 
 });
