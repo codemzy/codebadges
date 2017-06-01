@@ -5,6 +5,8 @@
 .outer {
   display: inline-block;
   background-color: #000;
+  background-image: -webkit-linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50% 50%);
+  background-image: linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
   border-radius: 50%;
   font-family: 'Play', sans-serif;
 }
@@ -12,12 +14,14 @@
 .inner {
   width: 200px;
   height: 200px;
-  background-color: #000;
-  border: 4px solid #fff;
+  background-color: #333;
+  background-image: -webkit-linear-gradient(15deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.2) 50% 50%);
+  background-image: linear-gradient(15deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.2) 50%);
+  border: 10px solid #fff;
   text-align: center;
   line-height: 1.25;
   color: #fff;
-  margin: 20px;
+  margin: 10px;
   border-radius: 50%;
 }
 
@@ -54,7 +58,7 @@
 .badge-small .inner {
   height: 150px;
   width: 150px;
-  margin: 10px;
+  margin: 5px;
 }
 
 /* Custom colors */
@@ -64,6 +68,6 @@
 }
 
 #fcc .inner {
-  background-image: url("../img/badges/icon_fcc.png");
+  background-image: url("../img/badges/icon_fcc.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
   background-repeat: repeat;
 }
