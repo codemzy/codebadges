@@ -61,6 +61,44 @@
   margin: 5px;
 }
 
+/* Loading */
+
+#loader {
+  width: 100%;
+  height: 100%;
+}
+
+.loading {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #000;
+  opacity: 0.2;
+  -webkit-animation: sk-bounce 4.0s infinite ease-in-out;
+  animation: sk-bounce 4.0s infinite ease-in-out;
+}
+
+#loading-text {
+  position: relative;
+  top: -110px;
+  z-index: 5;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
 /* Custom colors */
 
 #fcc .outer, #fcc .inner {
