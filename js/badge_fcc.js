@@ -28,7 +28,7 @@ $(document).ready(function() {
         '<div id="user">' + name + '</div><div class="small">FreeCodeCamp Student</div>' +
         '<div id="completed" class="small">Completed</div><div><span id="challenges">' + challenges + '</span> challenges</div>' +
         '<div class="small">since <span id="date">' + date + '</span></div>';
-        $('#fcc .inner').html(html);
+        $('.code-badge.fcc .inner').html(html);
     });
 
 });
