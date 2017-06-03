@@ -2,6 +2,10 @@
 
 $(document).ready(function() {
     
+    // add the loading to any badges
+    $('.code-badge').html('<div class="outer"><div class="inner"><div id="loader"><div class="loading"></div><div id="loading-text">Loading...</div></div></div></div>');
+    
+    
     var name = "codemzy";
     // get name from url parameter
     
