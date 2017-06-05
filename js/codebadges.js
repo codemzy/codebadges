@@ -40,6 +40,24 @@
                 '<div class="small">since <span id="date">' + date + '</span></div>';
                 $('.code-badge.fcc .inner').html(html);
             });
+        },
+        
+        // GitHub badge
+        gitHub: function() {
+            var name = this.name; // name already passed to init
+            // request user data from GitHub API
+            var url = 'https://api.github.com/users/' + name;
+            $.get(url, function(response) {
+                var followers = response.followers;
+                var repos = response.public_repos;
+                var date = response.created_at.split("-")[0];
+                // update the inner html of badge with all the info
+                var html = '<div id="points">' + followers + '</div><div class="small">followers</div>' +
+                '<div id="user">' + name + '</div><div class="small">GitHub User</div>' +
+                '<div id="completed" class="small">Created</div><div><span id="challenges">' + repos + '</span> public repos</div>' +
+                '<div class="small">since <span id="date">' + date + '</span></div>';
+                $('.code-badge.gh .inner').html(html);
+            });
         }
         
     };
