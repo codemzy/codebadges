@@ -99,7 +99,9 @@
   }
 }
 
-/* Custom colors */
+/**************** Custom colors ****************/
+
+/* FreeCodeCamp */
 
 .code-badge.fcc .outer, .code-badge.fcc .inner {
   background-color: #006400;
@@ -107,5 +109,12 @@
 
 .code-badge.fcc .inner {
   background-image: url("../img/badges/icon_fcc.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
+  background-repeat: repeat;
+}
+
+/* GitHub */
+
+.code-badge.gh .inner {
+  background-image: url("../img/badges/icon_gh.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
   background-repeat: repeat;
 }
