@@ -18,7 +18,10 @@
         self.name = name || 'codemzy';
     };
     
-    // Greetr init prototype same as the Greetr one (both point to the same prototype)
+    // codeBadges init prototype same as the codeBadges one (both point to the same prototype)
     codeBadges.init.prototype = codeBadges.prototype;
+    
+    // pass our codeBadges function to the global window object
+    global.codeBadges = codeBadges;
     
 })(window, jQuery);
