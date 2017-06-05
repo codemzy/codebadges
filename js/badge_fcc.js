@@ -37,5 +37,6 @@ $(document).ready(function() {
     
     codeBadges("codemzy").freeCodeCamp();
     codeBadges("codemzy").gitHub();
+    codeBadges("bijanbwb").codeSchool();
     
 });
