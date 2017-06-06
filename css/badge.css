@@ -19,6 +19,7 @@
   background-color: #333;
   background-image: -webkit-linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50% 50%);
   background-image: linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
+  background-repeat: repeat;
   border: 5px double #fff;
   text-align: center;
   line-height: 1.25;
@@ -102,6 +103,16 @@
 
 /**************** Custom colors ****************/
 
+/* CodeSchool */
+
+.code-badge.codeschool .outer, .code-badge.codeschool .inner {
+  background-color: #1E8BC3;
+}
+
+.code-badge.codeschool .inner {
+  background-image: url("../img/badges/icon_codeschool.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
+}
+
 /* FreeCodeCamp */
 
 .code-badge.fcc .outer, .code-badge.fcc .inner {
@@ -110,12 +121,10 @@
 
 .code-badge.fcc .inner {
   background-image: url("../img/badges/icon_fcc.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
-  background-repeat: repeat;
 }
 
 /* GitHub */
 
 .code-badge.gh .inner {
   background-image: url("../img/badges/icon_gh.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
-  background-repeat: repeat;
 }
