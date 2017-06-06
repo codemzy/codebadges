@@ -44,26 +44,6 @@
                 '<div class="small">since <span id="date">' + data.date + '</span></div>';
                 $('.code-badge.codeschool .inner').html(html);
             });
-            
-            
-            // var name = this.name; // name already passed to init
-            // // request user data from CodeSchool user .json data
-            // var url = 'https://www.codeschool.com/users/' + name + '.json';
-            // $.ajax({
-            //   type: "GET",
-            //   dataType: 'jsonp',
-            //   url: url
-            // }).done(function(response) {
-            //     var badges = response.badges.length;
-            //     var score = response.user.total_score;
-            //     var date = response.user.member_since.split("-")[0];
-            //     // update the inner html of badge with all the info
-            //     var html = '<div id="points">' + badges + '</div><div class="small">badges</div>' +
-            //     '<div id="user">' + name + '</div><div class="small">CodeSchool Student</div>' +
-            //     '<div id="completed" class="small">Score</div><div><span id="challenges">' + score + '</span></div>' +
-            //     '<div class="small">since <span id="date">' + date + '</span></div>';
-            //     $('.code-badge.codeschool .inner').html(html);
-            // });
         },
         
         // FreeCodeCamp badge
