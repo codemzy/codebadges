@@ -22,7 +22,9 @@
             var badges = response.badges.length;
             var score = response.user.total_score;
             var date = response.user.member_since.split("-")[0];
-            callback({ top: badges, top_type: "badges", user_type: "CodeSchool Student", bottom: score, bottom_type: "Score", date: date });
+            callback(false, { top: badges, top_type: "badges", user_type: "CodeSchool Student", bottom: score, bottom_type: "Score", date: date });
+        }).fail(function() {
+            callback("error");
         });
     };
     
@@ -44,7 +46,9 @@
               return a - b;
             });
             var date = dates[0];
-            callback({ top: points, top_type: "points", user_type: "FreeCodeCamp Student", bottom: challenges, bottom_type: "Completed", date: date });
+            callback(false, { top: points, top_type: "points", user_type: "FreeCodeCamp Student", bottom: challenges, bottom_type: "Completed", date: date });
+        }).fail(function() {
+            callback("error");
         });
     };
     
@@ -54,11 +58,14 @@
             var followers = response.followers;
             var repos = response.public_repos + " public repos";
             var date = response.created_at.split("-")[0];
-            callback({ top: followers, top_type: "followers", user_type: "GitHub User", bottom: repos, bottom_type: "Created", date: date });
+            callback(false, { top: followers, top_type: "followers", user_type: "GitHub User", bottom: repos, bottom_type: "Created", date: date });
+        }).fail(function() {
+            callback("error");
         });
     };
     
     // HTML 
+    var errorHTML = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
     var createHTML = function(data, name) {
         return '<div class="margin-top big">' + data.top + '</div><div class="small">' + data.top_type + '</div>' +
                 '<div id="user">' + name + '</div><div class="small">' + data.user_type + '</div>' +
@@ -74,9 +81,12 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            codeSchoolAPI(name, function(data) {
+            codeSchoolAPI(name, function(err, data) {
+                var html = errorHTML;
+                if (!err) {
+                    html = createHTML(data, name);
+                }
                 // update the inner html of badge with all the info
-                var html = createHTML(data, name);
                 $('.code-badge.codeschool .inner').html(html);
             });
             return this; // return this so can chain methods
@@ -87,7 +97,7 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            freeCodeCampAPI(name, function(data) {
+            freeCodeCampAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = createHTML(data, name);
                 $('.code-badge.fcc .inner').html(html);
@@ -100,7 +110,7 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            gitHubAPI(name, function(data) {
+            gitHubAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = createHTML(data, name);
                 $('.code-badge.gh .inner').html(html);
@@ -112,8 +122,7 @@
     
     // codeBadges.init function constructor
     codeBadges.init = function(name) {
-        var self = this;
-        self.name = name || 'codemzy';
+        this.name = name || 'codemzy';
     };
     
     // codeBadges init prototype same as the codeBadges one (both point to the same prototype)

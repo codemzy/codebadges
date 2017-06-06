@@ -1,6 +1,7 @@
 .code-badge {
   text-align: center;
   display: inline-block;
+  vertical-align: top;
 }
 
 .code-badge .outer {
