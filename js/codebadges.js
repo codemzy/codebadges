@@ -6,32 +6,64 @@
     var codeBadges = function(name) {
         // add the loading to any badges
         $('.code-badge').html('<div class="outer"><div class="inner"><div id="loader"><div class="loading"></div><div id="loading-text">Loading...</div></div></div></div>');
+        // return new codeBadges object with name property
         return new codeBadges.init(name);
     };
+    
+    // API CALLS
+    
+    var codeSchoolAPI = function(name, callback) {
+        var url = 'https://www.codeschool.com/users/' + name + '.json';
+        $.ajax({
+          type: "GET",
+          dataType: 'jsonp',
+          url: url
+        }).done(function(response) {
+            var badges = response.badges.length;
+            var score = response.user.total_score;
+            var date = response.user.member_since.split("-")[0];
+            callback({ top: badges, bottom: score, date: date });
+        });
+    };
+    
+    
     
     // Methods that can be used
     codeBadges.prototype = {
         
         // CodeSchool badge
-        codeSchool: function() {
-            var name = this.name; // name already passed to init
-            // request user data from CodeSchool user .json data
-            var url = 'https://www.codeschool.com/users/' + name + '.json';
-            $.ajax({
-              type: "GET",
-              dataType: 'jsonp',
-              url: url
-            }).done(function(response) {
-                var badges = response.badges.length;
-                var score = response.user.total_score;
-                var date = response.user.member_since.split("-")[0];
+        codeSchool: function(newName) {
+            // get the name 
+            var name = newName || this.name;
+            // call api function
+            codeSchoolAPI(name, function(data) {
                 // update the inner html of badge with all the info
-                var html = '<div id="points">' + badges + '</div><div class="small">badges</div>' +
+                var html = '<div id="points">' + data.top + '</div><div class="small">badges</div>' +
                 '<div id="user">' + name + '</div><div class="small">CodeSchool Student</div>' +
-                '<div id="completed" class="small">Score</div><div><span id="challenges">' + score + '</span></div>' +
-                '<div class="small">since <span id="date">' + date + '</span></div>';
+                '<div id="completed" class="small">Score</div><div><span id="challenges">' + data.bottom + '</span></div>' +
+                '<div class="small">since <span id="date">' + data.date + '</span></div>';
                 $('.code-badge.codeschool .inner').html(html);
             });
+            
+            
+            // var name = this.name; // name already passed to init
+            // // request user data from CodeSchool user .json data
+            // var url = 'https://www.codeschool.com/users/' + name + '.json';
+            // $.ajax({
+            //   type: "GET",
+            //   dataType: 'jsonp',
+            //   url: url
+            // }).done(function(response) {
+            //     var badges = response.badges.length;
+            //     var score = response.user.total_score;
+            //     var date = response.user.member_since.split("-")[0];
+            //     // update the inner html of badge with all the info
+            //     var html = '<div id="points">' + badges + '</div><div class="small">badges</div>' +
+            //     '<div id="user">' + name + '</div><div class="small">CodeSchool Student</div>' +
+            //     '<div id="completed" class="small">Score</div><div><span id="challenges">' + score + '</span></div>' +
+            //     '<div class="small">since <span id="date">' + date + '</span></div>';
+            //     $('.code-badge.codeschool .inner').html(html);
+            // });
         },
         
         // FreeCodeCamp badge
