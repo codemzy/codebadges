@@ -35,6 +35,6 @@ $(document).ready(function() {
     //     $('.code-badge.fcc .inner').html(html);
     // });
     
-    codeBadges("codemzy").freeCodeCamp().codeSchool("bijanbwb").gitHub();
+    codeBadges("codemzy").freeCodeCamp().codeSchool("bijanbwb").gitHub().codecademy();
     
 });

@@ -99,6 +99,16 @@
 
 /**************** Custom colors ****************/
 
+/* Codecademy */
+
+.code-badge.codecademy .outer, .code-badge.codecademy .inner {
+  background-color: #34495E;
+}
+
+.code-badge.codecademy .inner {
+  background-image: url("../img/badges/icon_codeschool.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
+}
+
 /* CodeSchool */
 
 .code-badge.codeschool .outer, .code-badge.codeschool .inner {

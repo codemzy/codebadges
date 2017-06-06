@@ -12,6 +12,18 @@
     
     // API CALLS
     
+    var codecademyAPI = function(name, callback) {
+        var url = 'https://www.codecademy.com/' + name;
+        $.get(url, function(response) {
+            var badges = $(response).find('p:contains("Badges")').closest('.link-area').find('h3').text();
+            var points = $(response).find('small:contains("total points")').closest('div').find('h3').text();
+            var date = $(response).find('small>small:contains("Joined")').text().split(", ")[1];
+            callback(false, { top: badges, top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date });
+        }).fail(function() {
+            callback("error");
+        });
+    };
+    
     var codeSchoolAPI = function(name, callback) {
         var url = 'https://www.codeschool.com/users/' + name + '.json';
         $.ajax({
@@ -75,6 +87,19 @@
     
     // Methods that can be used
     codeBadges.prototype = {
+        
+        // Codecademy badge
+        codecademy: function(newName) {
+            // get the name 
+            var name = newName || this.name; // defaults to name passed to init
+            // call api function
+            codecademyAPI(name, function(err, data) {
+                // update the inner html of badge with all the info
+                var html = err ? errorHTML : createHTML(data, name);
+                $('.code-badge.codecademy .inner').html(html);
+            });
+            return this; // return this so can chain methods
+        },
         
         // CodeSchool badge
         codeSchool: function(newName) {
