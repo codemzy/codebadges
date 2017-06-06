@@ -82,11 +82,8 @@
             var name = newName || this.name; // defaults to name passed to init
             // call api function
             codeSchoolAPI(name, function(err, data) {
-                var html = errorHTML;
-                if (!err) {
-                    html = createHTML(data, name);
-                }
                 // update the inner html of badge with all the info
+                var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.codeschool .inner').html(html);
             });
             return this; // return this so can chain methods
@@ -99,7 +96,7 @@
             // call api function
             freeCodeCampAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
-                var html = createHTML(data, name);
+                var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.fcc .inner').html(html);
             });
             return this; // return this so can chain methods
@@ -112,7 +109,7 @@
             // call api function
             gitHubAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
-                var html = createHTML(data, name);
+                var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.gh .inner').html(html);
             });
             return this; // return this so can chain methods
