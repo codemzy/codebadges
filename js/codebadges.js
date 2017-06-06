@@ -44,6 +44,7 @@
                 '<div class="small">since <span id="date">' + data.date + '</span></div>';
                 $('.code-badge.codeschool .inner').html(html);
             });
+            return this; // return this so can chain methods
         },
         
         // FreeCodeCamp badge
@@ -74,6 +75,7 @@
                 '<div class="small">since <span id="date">' + date + '</span></div>';
                 $('.code-badge.fcc .inner').html(html);
             });
+            return this; // return this so can chain methods
         },
         
         // GitHub badge
@@ -92,6 +94,7 @@
                 '<div class="small">since <span id="date">' + date + '</span></div>';
                 $('.code-badge.gh .inner').html(html);
             });
+            return this; // return this so can chain methods
         }
         
     };
