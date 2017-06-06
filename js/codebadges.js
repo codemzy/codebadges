@@ -13,7 +13,7 @@
     // API CALLS
     
     var codecademyAPI = function(name, callback) {
-        var url = 'https://www.codecademy.com/' + name;
+        var url = 'https://www.codecademy.com/' + name; // no api so scraping
         $.get(url, function(response) {
             var badges = $(response).find('p:contains("Badges")').closest('.link-area').find('h3').text();
             var points = $(response).find('small:contains("total points")').closest('div').find('h3').text();
@@ -71,6 +71,18 @@
             var repos = response.public_repos + " public repos";
             var date = response.created_at.split("-")[0];
             callback(false, { top: followers, top_type: "followers", user_type: "GitHub User", bottom: repos, bottom_type: "Created", date: date });
+        }).fail(function() {
+            callback("error");
+        });
+    };
+    
+    var treeHouseAPI = function(name, callback) {
+        var url ='https://teamtreehouse.com/' + name + '.json';
+        $.get(url, function(response) {
+            var points = response.points.total;
+            var badges = response.badges.length + " achievements";
+            var date = response.badges && response.badges.length > 0 ? response.badges[0].earned_date.split("-")[0] : "-";
+            callback(false, { top: points, top_type: "points", user_type: "Treehouse Student", bottom: badges, bottom_type: "Completed", date: date });
         }).fail(function() {
             callback("error");
         });
@@ -136,6 +148,19 @@
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.gh .inner').html(html);
+            });
+            return this; // return this so can chain methods
+        },
+        
+        // TreeHouse badge
+        treeHouse: function(newName) {
+            // get the name 
+            var name = newName || this.name; // defaults to name passed to init
+            // call api function
+            treeHouseAPI(name, function(err, data) {
+                // update the inner html of badge with all the info
+                var html = err ? errorHTML : createHTML(data, name);
+                $('.code-badge.treehouse .inner').html(html);
             });
             return this; // return this so can chain methods
         }

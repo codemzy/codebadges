@@ -106,7 +106,7 @@
 }
 
 .code-badge.codecademy .inner {
-  background-image: url("../img/badges/icon_codeschool.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
+  background-image: url("../img/badges/icon_codecademy.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
 }
 
 /* CodeSchool */
