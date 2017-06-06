@@ -134,3 +134,13 @@
 .code-badge.gh .inner {
   background-image: url("../img/badges/icon_gh.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
 }
+
+/* TreeHouse */
+
+.code-badge.treehouse .outer, .code-badge.treehouse .inner {
+  background-color: #26A65B;
+}
+
+.code-badge.treehouse .inner {
+  background-image: url("../img/badges/icon_treehouse.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
+}
