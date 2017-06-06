@@ -22,7 +22,7 @@
             var badges = response.badges.length;
             var score = response.user.total_score;
             var date = response.user.member_since.split("-")[0];
-            callback({ top: badges, bottom: score, date: date });
+            callback({ top: badges, top_type: "badges", user_type: "CodeSchool Student", bottom: score, bottom_type: "Score", date: date });
         });
     };
     
@@ -31,7 +31,7 @@
         $.get(url, function(response) {
             var score = $(response).find('.flat-top.text-primary').text().split(' ')[1];
             var points = parseInt(score, 10); // get the users points
-            var challenges = $(response).find('tbody tr').length; // number of challenges completed
+            var challenges = $(response).find('tbody tr').length + " challenges"; // number of challenges completed
             // get the dates from the first item in each table
             var dateArr = $(response).find('tbody').find('tr:first td:eq(1)');
             var dates = []; // array to hold years
@@ -44,7 +44,7 @@
               return a - b;
             });
             var date = dates[0];
-            callback({ top: points, bottom: challenges, date: date });
+            callback({ top: points, top_type: "points", user_type: "FreeCodeCamp Student", bottom: challenges, bottom_type: "Completed", date: date });
         });
     };
     
@@ -52,10 +52,18 @@
         var url = 'https://api.github.com/users/' + name;
         $.get(url, function(response) {
             var followers = response.followers;
-            var repos = response.public_repos;
+            var repos = response.public_repos + " public repos";
             var date = response.created_at.split("-")[0];
-            callback({ top: followers, bottom: repos, date: date });
+            callback({ top: followers, top_type: "followers", user_type: "GitHub User", bottom: repos, bottom_type: "Created", date: date });
         });
+    };
+    
+    // HTML 
+    var createHTML = function(data, name) {
+        return '<div class="margin-top big">' + data.top + '</div><div class="small">' + data.top_type + '</div>' +
+                '<div id="user">' + name + '</div><div class="small">' + data.user_type + '</div>' +
+                '<div class="small margin-top">' + data.bottom_type + '</div><div><span>' + data.bottom + '</span></div>' +
+                '<div class="small">since <span id="date">' + data.date + '</span></div>';
     };
     
     // Methods that can be used
@@ -68,10 +76,7 @@
             // call api function
             codeSchoolAPI(name, function(data) {
                 // update the inner html of badge with all the info
-                var html = '<div id="points">' + data.top + '</div><div class="small">badges</div>' +
-                '<div id="user">' + name + '</div><div class="small">CodeSchool Student</div>' +
-                '<div id="completed" class="small">Score</div><div><span id="challenges">' + data.bottom + '</span></div>' +
-                '<div class="small">since <span id="date">' + data.date + '</span></div>';
+                var html = createHTML(data, name);
                 $('.code-badge.codeschool .inner').html(html);
             });
             return this; // return this so can chain methods
@@ -84,10 +89,7 @@
             // call api function
             freeCodeCampAPI(name, function(data) {
                 // update the inner html of badge with all the info
-                var html = '<div id="points">' + data.top + '</div><div class="small">points</div>' +
-                '<div id="user">' + name + '</div><div class="small">FreeCodeCamp Student</div>' +
-                '<div id="completed" class="small">Completed</div><div><span id="challenges">' + data.bottom + '</span> challenges</div>' +
-                '<div class="small">since <span id="date">' + data.date + '</span></div>';
+                var html = createHTML(data, name);
                 $('.code-badge.fcc .inner').html(html);
             });
             return this; // return this so can chain methods
@@ -100,10 +102,7 @@
             // call api function
             gitHubAPI(name, function(data) {
                 // update the inner html of badge with all the info
-                var html = '<div id="points">' + data.top + '</div><div class="small">followers</div>' +
-                '<div id="user">' + name + '</div><div class="small">GitHub User</div>' +
-                '<div id="completed" class="small">Created</div><div><span id="challenges">' + data.bottom + '</span> public repos</div>' +
-                '<div class="small">since <span id="date">' + data.date + '</span></div>';
+                var html = createHTML(data, name);
                 $('.code-badge.gh .inner').html(html);
             });
             return this; // return this so can chain methods
