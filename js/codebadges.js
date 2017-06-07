@@ -55,11 +55,11 @@
     var freeCodeCampAPI = function(name, callback) {
         var url = 'https://www.freecodecamp.com/' + name; // request user data from FCC (no api so scraping off user page)
         $.get(url, function(response) {
-            var score = $(response).find('.flat-top.text-primary').text().split(' ')[1];
-            var points = parseInt(score, 10); // get the users points
-            var challenges = $(response).find('tbody tr').length + " challenges"; // number of challenges completed
-            // get the dates from the first item in each table
-            var dateArr = $(response).find('tbody').find('tr:first td:eq(1)');
+            var points = response.match(/<h1 class="flat-top text-primary">\[ ([\s|\S]*?) \]<\/h1>/)[1];
+            var challenges = response.replace(/<thead>[\s|\S]*?<\/thead>/g).match(/<tr>/g).length;
+            // get the dates from the first item in the first table
+            var challengeTables = response.match(/<table[\s|\S]*?<\/table>/g).join(" ");
+            var dateArr = $(challengeTables).find('tbody').find('tr:first td:eq(1)');
             var dates = []; // array to hold years
             for (var i = 0; i < 3; i++) {
                 // get the year
