@@ -40,6 +40,18 @@
         });
     };
     
+    var codeWarsAPI = function(name, callback) {
+        var url = 'https://allorigins.us/get?url=' + encodeURIComponent('https://www.codewars.com/users/') + name + '&callback=?'; // scraping via allorigins due to CORS
+        $.get(url, function(data){
+            var kyu = data.contents.match(/Rank:<\/b>(.+?)<\/div>/m)[1];
+            var points = data.contents.match(/Honor:<\/b>(.+?)<\/div>/m)[1];
+            var date = data.contents.match(/Member Since:<\/b>(.+?)<\/div>/m)[1].split(" ")[1];
+            callback(false, { top: points, top_type: "honor", user_type: "CodeWars Member", bottom: kyu, bottom_type: "Rank", date: date });
+        }).fail(function() {
+            callback("error");
+        });
+    };
+    
     var freeCodeCampAPI = function(name, callback) {
         var url = 'https://www.freecodecamp.com/' + name; // request user data from FCC (no api so scraping off user page)
         $.get(url, function(response) {
@@ -122,6 +134,18 @@
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.codeschool .inner').html(html);
+            });
+            return this; // return this so can chain methods
+        },
+        
+        codeWars: function(newName) {
+            // get the name 
+            var name = newName || this.name; // defaults to name passed to init
+            // call api function
+            codeWarsAPI(name, function(err, data) {
+                // update the inner html of badge with all the info
+                var html = err ? errorHTML : createHTML(data, name);
+                $('.code-badge.codewars .inner').html(html);
             });
             return this; // return this so can chain methods
         },
