@@ -15,9 +15,9 @@
     var codecademyAPI = function(name, callback) {
         var url = 'https://www.codecademy.com/' + name; // no api so scraping
         $.get(url, function(response) {
-            var badges = $(response).find('p:contains("Badges")').closest('.link-area').find('h3').text();
-            var points = $(response).find('small:contains("total points")').closest('div').find('h3').text();
-            var date = $(response).find('small>small:contains("Joined")').text().split(", ")[1];
+            var badges = response.match(/<p>Skills completed<\/p>[\s|\S]*?<h3>([\s|\S]*?)<\/h3>[\s|\S]*?<p>Badges<\/p>/m)[1];
+            var points = response.match(/<h3 class="padding-right--quarter">([\s|\S]*?)<\/h3>[\s|\S]*?<small>total points<\/small>/m)[1];
+            var date = response.match(/<small class="text--ellipsis">Joined([\s|\S]*?)<\/small>/m)[1].split(", ")[1];
             callback(false, { top: badges, top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date });
         }).fail(function() {
             callback("error");
