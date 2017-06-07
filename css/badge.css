@@ -119,6 +119,16 @@
   background-image: url("../img/badges/icon_codeschool.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
 }
 
+/* CodeWars */
+
+.code-badge.codewars .outer, .code-badge.codewars .inner {
+  background-color: #bb432c;
+}
+
+.code-badge.codewars .inner {
+  background-image: url("../img/badges/icon_codewars.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
+}
+
 /* FreeCodeCamp */
 
 .code-badge.fcc .outer, .code-badge.fcc .inner {
