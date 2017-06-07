@@ -4,6 +4,8 @@
   text-align: center;
   display: inline-block;
   vertical-align: top;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .code-badge .outer {
@@ -39,7 +41,6 @@
   font-size: 200%;
   margin-top: 5%;
   font-family: 'Permanent Marker', cursive;
-/*   text-transform: uppercase; */
 }
 
 .code-badge .inner .big {
@@ -52,23 +53,23 @@
 
 /* Small badges */
 
-.badge-small {
-  font-size: 75%;
+.code-badge.badge-small {
+  font-size: 11px;
 }
 
-.badge-small .inner {
+.code-badge.badge-small .inner {
   height: 150px;
   width: 150px;
 }
 
 /* Loading */
 
-#loader {
+.code-badge #loader {
   width: 100%;
   height: 100%;
 }
 
-.loading {
+.code-badge .loading {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -78,7 +79,7 @@
   animation: sk-bounce 4.0s infinite ease-in-out;
 }
 
-#loading-text {
+.code-badge #loading-text {
   position: relative;
   top: -110px;
   z-index: 5;
