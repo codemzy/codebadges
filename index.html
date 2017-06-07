@@ -12,9 +12,13 @@
 </head>
 <body>
   
+    <div class="jumbotron text-center">
+      <h1>CodeBadges</h1>
+      <p>Hello developer... time to show off your progress and achievements!</p>
+    </div>
   
     <div align="center">
-      <div class="code-badge fcc"></div>
+      <div class="code-badge fcc grey-badge"></div>
       <div class="code-badge gh"></div>
       <div class="code-badge codeschool"></div>
       <div class="code-badge codecademy"></div>
@@ -22,13 +26,56 @@
       <div class="code-badge treehouse"></div>
     </div>
     
-    <div align="center">
-      <div class="code-badge badge-small fcc"></div>
-      <div class="code-badge badge-small gh"></div>
-      <div class="code-badge badge-small codeschool"></div>
-      <div class="code-badge badge-small codecademy"></div>
-      <div class="code-badge badge-small codewars"></div>
-      <div class="code-badge badge-small treehouse"></div>
+    <div class="container">
+        
+        <h2>Get Started</h2>
+        <h4>Install.</h4>
+        <pre>npm --save code-badges</pre>
+        <h4>CDN.</h4>
+        <pre>npm --save code-badges</pre>
+        
+        <h2>Usage</h2>
+        <h4>HTML.</h4>
+        <b>Add a single badge...</b>
+        <pre>&lt;div class="code-badge fcc"&gt;&lt;/div&gt;</pre>
+        <b>Or a row of badges...</b>
+        <pre>
+&lt;div align="center"&gt;
+  &lt;div class="code-badge fcc"&gt;&lt;/div&gt;
+  &lt;div class="code-badge gh"&gt;&lt;/div&gt;
+  &lt;div class="code-badge codeschool"&gt;&lt;/div&gt;
+  &lt;div class="code-badge codecademy"&gt;&lt;/div&gt;
+  &lt;div class="code-badge codewars"&gt;&lt;/div&gt;
+  &lt;div class="code-badge treehouse"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+        <h4>JavaScript.</h4>
+        <b>Now activate your badges with one line of js...</b>
+        <pre>codeBadges("codemzy").freeCodeCamp().codeSchool("bijanbwb").gitHub().codecademy().treeHouse("john").codeWars();</pre>
+        <p>Activate codeBadges with your main username <code>codeBadges("username")</code> and then chain on the badges you have in your html.
+        Got a different username for some platforms? No worries, just pass that username in to the platform, e.g. <code>.gitHub("differentName")</code>.</p>
+        
+        <h2>Customising</h2>
+        <h4>Small badges.</h4>
+        <pre>&lt;div class="code-badge badge-small fcc"&gt;&lt;/div&gt;</pre>
+        <p>Just add the class <code>badge-small</code> to your badges to make them smaller.</p>
+        <div align="center">
+          <div class="code-badge badge-small fcc"></div>
+          <div class="code-badge badge-small gh"></div>
+          <div class="code-badge badge-small codeschool"></div>
+          <div class="code-badge badge-small codecademy"></div>
+          <div class="code-badge badge-small codewars"></div>
+          <div class="code-badge badge-small treehouse"></div>
+        </div>
+        <h4>Custom colours.</h4>
+        <p>Got a strict colour scheme and want all your badges in pink? Who am I to judge?!</p>
+        <b>Add your own classes...</b>
+        <pre>
+.code-badge.pink-badge .outer {
+  background-color: #DB0A5B;
+}</pre>
+        <p>In your own css, just add a code badge class for <code>.pink-badge</code> like the example above.</p>
+        <b>Apply to your html...</b>
+        <pre>&lt;div class="code-badge fcc pink-badge"&gt;&lt;/div&gt;</pre>
     </div>
     
     

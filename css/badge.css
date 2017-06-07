@@ -21,7 +21,6 @@
 .code-badge .inner {
   width: 200px;
   height: 200px;
-  background-color: #333;
   background-image: -webkit-linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50% 50%);
   background-image: linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
   background-repeat: repeat;
@@ -104,7 +103,7 @@
 
 /* Codecademy */
 
-.code-badge.codecademy .outer, .code-badge.codecademy .inner {
+.code-badge.codecademy .outer {
   background-color: #34495E;
 }
 
@@ -114,7 +113,7 @@
 
 /* CodeSchool */
 
-.code-badge.codeschool .outer, .code-badge.codeschool .inner {
+.code-badge.codeschool .outer {
   background-color: #1E8BC3;
 }
 
@@ -124,7 +123,7 @@
 
 /* CodeWars */
 
-.code-badge.codewars .outer, .code-badge.codewars .inner {
+.code-badge.codewars .outer {
   background-color: #bb432c;
 }
 
@@ -134,7 +133,7 @@
 
 /* FreeCodeCamp */
 
-.code-badge.fcc .outer, .code-badge.fcc .inner {
+.code-badge.fcc .outer {
   background-color: #006400;
 }
 
@@ -150,10 +149,14 @@
 
 /* TreeHouse */
 
-.code-badge.treehouse .outer, .code-badge.treehouse .inner {
+.code-badge.treehouse .outer {
   background-color: #26A65B;
 }
 
 .code-badge.treehouse .inner {
   background-image: url("../img/badges/icon_treehouse.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
+}
+
+.code-badge.pink-badge .outer {
+  background-color: #DB0A5B;
 }
