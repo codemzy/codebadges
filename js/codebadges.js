@@ -56,7 +56,7 @@
         var url = 'https://www.freecodecamp.com/' + name; // request user data from FCC (no api so scraping off user page)
         $.get(url, function(response) {
             var points = response.match(/<h1 class="flat-top text-primary">\[ ([\s|\S]*?) \]<\/h1>/)[1];
-            var challenges = response.replace(/<thead>[\s|\S]*?<\/thead>/g).match(/<tr>/g).length;
+            var challenges = response.replace(/<thead>[\s|\S]*?<\/thead>/g).match(/<tr>/g).length + " challenges";
             // get the dates from the first item in the first table
             var challengeTables = response.match(/<table[\s|\S]*?<\/table>/g).join(" ");
             var dateArr = $(challengeTables).find('tbody').find('tr:first td:eq(1)');
