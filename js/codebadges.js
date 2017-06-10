@@ -101,14 +101,6 @@
     };
     
     // HTML 
-    var errorHTML = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
-    var createHTML = function(data, name) {
-        return '<div class="margin-top big">' + data.top + '</div><div class="small">' + data.top_type + '</div>' +
-                '<div id="user">' + name + '</div><div class="small">' + data.user_type + '</div>' +
-                '<div class="small margin-top">' + data.bottom_type + '</div><div><span>' + data.bottom + '</span></div>' +
-                '<div class="small">since <span id="date">' + data.date + '</span></div>';
-    };
-    
     // check name length
     var nameLength = function(name) {
         if (name.length > 10) {
@@ -122,8 +114,18 @@
             return { name: name, small: false };
         }
     };
+    // return html
+    var errorHTML = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
+    var createHTML = function(data, name) {
+        var nameObj = nameLength(name);
+        var nameClass = nameObj.small ? "smaller" : "";
+        return '<div class="margin-top big">' + data.top + '</div><div class="small">' + data.top_type + '</div>' +
+                '<div id="user" class="' + nameClass + '>' + nameObj.name + '</div><div class="small">' + data.user_type + '</div>' +
+                '<div class="small margin-top">' + data.bottom_type + '</div><div><span>' + data.bottom + '</span></div>' +
+                '<div class="small">since <span id="date">' + data.date + '</span></div>';
+    };
     
-    // Methods that can be used
+    // CODEBADGES METHODS
     codeBadges.prototype = {
         
         // Codecademy badge
