@@ -42,6 +42,10 @@
   font-family: 'Permanent Marker', cursive;
 }
 
+.code-badge .inner #user .smaller {
+  font-size: 120%;
+}
+
 .code-badge .inner .big {
   font-size: 120%;
 }
