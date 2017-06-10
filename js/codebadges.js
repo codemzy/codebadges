@@ -105,7 +105,7 @@
     var nameLength = function(name) {
         if (name.length > 10) {
             if (name.length > 16) {
-                var shortName = name.split(0, 15); // truncate
+                var shortName = name.split(0, 14) + "…"; // truncate
                 return { name: shortName, small: true };
             } else {
                return { name: name, small: true }; 
