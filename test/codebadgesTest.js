@@ -23,6 +23,10 @@ describe('_validate', function() {
           assert.deepEqual(codeBadges()._validate.nameLength("thisisLonger"), { name: "thisisLonger", small: true }, 'Returned obj did not equal expected');
           assert.deepEqual(codeBadges()._validate.nameLength("thisisLongester"), { name: "thisisLongester", small: true }, 'Returned obj did not equal expected');
         });
+        it('should truncate name if over 16', function() {
+            assert.deepEqual(codeBadges()._validate.nameLength("thisisTooooooLong"), { name: "thisisToooooo...", small: true }, 'First returned obj did not equal expected');
+            assert.deepEqual(codeBadges()._validate.nameLength("thisisSooooooooooooooLong"), { name: "thisisSoooooo...", small: true }, 'Second returned obj did not equal expected');
+        });
     });
 });
 
