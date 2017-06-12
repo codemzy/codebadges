@@ -137,6 +137,17 @@
                 }).fail(function() {
                     callback("error");
                 });
+            },
+            _treehouseAPI: function(name, callback) {
+                var url ='https://teamtreehouse.com/' + name + '.json';
+                $.get(url, function(response) {
+                    var points = response.points.total;
+                    var badges = response.badges.length + " achievements";
+                    var date = response.badges && response.badges.length > 0 ? response.badges[0].earned_date.split("-")[0] : "-";
+                    callback(false, { top: points, top_type: "points", user_type: "Treehouse Student", bottom: badges, bottom_type: "Completed", date: date });
+                }).fail(function() {
+                    callback("error");
+                });
             }
         },
         

@@ -14,6 +14,7 @@ describe('codeBadges', function() {
 
 // API CALLS
 describe('_get', function() {
+    this.timeout(5000); // allow all get requests 5 seconds to fetch data (increased from standard 2 secs)
     // codecademy
     describe('_codecademyAPI', function() {
         it('should exist', function() {
@@ -99,6 +100,22 @@ describe('_get', function() {
             });
         });
     });
-    
+    // treehouse
+    describe('_treehouseAPI', function() {
+        it('should exist', function() {
+            assert.exists(codeBadges()._get._treehouseAPI, 'treehouse api does not exist');
+        });
+        it('should return user data object', function(done) { // added "done" as parameter
+            assert.doesNotThrow(function() {
+                codeBadges()._get._treehouseAPI("ryancarson", function(err, data) { // pass callback 
+                    if (err) return done(err); // handle error
+                    assert.isObject(data, 'data returned is not an object');
+                    assert.typeOf(data.top, 'number', 'data.top is not a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    done(); // call "done()" the parameter
+                });
+            });
+        });
+    }); 
     
 });
