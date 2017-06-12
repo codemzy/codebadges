@@ -137,17 +137,17 @@
 
 /* FreeCodeCamp */
 
-.code-badge.fcc .outer {
+.code-badge.freecodecamp .outer {
   background-color: #006400;
 }
 
-.code-badge.fcc .inner {
+.code-badge.freecodecamp .inner {
   background-image: url("../img/badges/icon_fcc.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
 }
 
 /* GitHub */
 
-.code-badge.gh .inner {
+.code-badge.github .inner {
   background-image: url("../img/badges/icon_gh.png"), linear-gradient(135deg, rgba(0,0,0, 0) 50%, rgba(0,0,0, 0.1) 50%);
 }
 

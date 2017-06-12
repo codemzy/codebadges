@@ -222,26 +222,42 @@
         },
         // FreeCodeCamp badge
         freeCodeCamp: function(newName) {
-            // get the name 
+            var badge = "freecodecamp";
+            // get and validate the name 
             var name = newName || this.name; // defaults to name passed to init
-            // call api function
-            this._get._freecodecampAPI(name, function(err, data) {
-                // update the inner html of badge with all the info
-                var html = err ? errorHTML : createHTML(data, name);
-                $('.code-badge.fcc .inner').html(html);
-            });
+            if (this._validate.checkName(name)) { // check if name given is a string and not too long
+                // call api function
+                this._get["_" + badge + "API"](name, function(err, data) {
+                    // update the inner html of badge with all the info
+                    if (!err) {
+                        this._html.badgeDisplay(badge, data, name);
+                    } else if (err) {
+                        this._html.badgeError(badge); // error from api
+                    }
+                }.bind(this));
+            } else {
+                this._html.badgeError(badge); // error failed checkName
+            }
             return this; // return this so can chain methods
         },
         // GitHub badge
         gitHub: function(newName) {
-            // get the name 
+            var badge = "github";
+            // get and validate the name 
             var name = newName || this.name; // defaults to name passed to init
-            // call api function
-            this._get._githubAPI(name, function(err, data) {
-                // update the inner html of badge with all the info
-                var html = err ? errorHTML : createHTML(data, name);
-                $('.code-badge.gh .inner').html(html);
-            });
+            if (this._validate.checkName(name)) { // check if name given is a string and not too long
+                // call api function
+                this._get["_" + badge + "API"](name, function(err, data) {
+                    // update the inner html of badge with all the info
+                    if (!err) {
+                        this._html.badgeDisplay(badge, data, name);
+                    } else if (err) {
+                        this._html.badgeError(badge); // error from api
+                    }
+                }.bind(this));
+            } else {
+                this._html.badgeError(badge); // error failed checkName
+            }
             return this; // return this so can chain methods
         },
         // TreeHouse badge
