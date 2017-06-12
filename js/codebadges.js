@@ -120,7 +120,7 @@
         var nameObj = nameLength(name);
         var nameClass = nameObj.small ? "smaller" : "";
         return '<div class="margin-top big">' + data.top + '</div><div class="small">' + data.top_type + '</div>' +
-                '<div id="user" class="' + nameClass + '>' + nameObj.name + '</div><div class="small">' + data.user_type + '</div>' +
+                '<div id="user" class="' + nameClass + '">' + nameObj.name + '</div><div class="small">' + data.user_type + '</div>' +
                 '<div class="small margin-top">' + data.bottom_type + '</div><div><span>' + data.bottom + '</span></div>' +
                 '<div class="small">since <span id="date">' + data.date + '</span></div>';
     };
