@@ -38,7 +38,7 @@
     // CODEBADGES METHODS
     codeBadges.prototype = {
         
-        // api get requests
+        // API GET REQUESTS
         _get: {
             _codecademyAPI: function(name, callback) {
                 var url = 'https://www.codecademy.com/' + name; // no api so scraping
@@ -124,6 +124,22 @@
             }
         },
         
+        _validate: {
+            nameLength: function(name) {
+                if (name.length > 10) {
+                    if (name.length > 16) {
+                        var shortName = name.split(0, 14) + "…"; // truncate
+                        return { name: shortName, small: true };
+                    } else {
+                       return { name: name, small: true }; 
+                    }
+                } else {
+                    return { name: name, small: false };
+                }
+            }
+        },
+        
+        // BADGE METHODS
         // Codecademy badge
         codecademy: function(newName) {
             // get the name 
@@ -136,7 +152,6 @@
             });
             return this; // return this so can chain methods
         },
-        
         // CodeSchool badge
         codeSchool: function(newName) {
             // get the name 
@@ -149,7 +164,7 @@
             });
             return this; // return this so can chain methods
         },
-        
+        // CodeWars badge
         codeWars: function(newName) {
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
@@ -161,7 +176,6 @@
             });
             return this; // return this so can chain methods
         },
-        
         // FreeCodeCamp badge
         freeCodeCamp: function(newName) {
             // get the name 
@@ -174,7 +188,6 @@
             });
             return this; // return this so can chain methods
         },
-        
         // GitHub badge
         gitHub: function(newName) {
             // get the name 
@@ -187,7 +200,6 @@
             });
             return this; // return this so can chain methods
         },
-        
         // TreeHouse badge
         treeHouse: function(newName) {
             // get the name 

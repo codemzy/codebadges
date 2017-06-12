@@ -12,6 +12,21 @@ describe('codeBadges', function() {
   it('test changing names');
 });
 
+// VALIDATE
+describe('_validate', function() {
+    describe('nameLength', function() {
+        it('should not change length or class if length 10 or less', function() {
+          assert.deepEqual(codeBadges()._validate.nameLength("codemzy"), { name: "codemzy", small: false }, 'Returned obj did not equal expected');
+          assert.deepEqual(codeBadges()._validate.nameLength("thisisaTen"), { name: "thisisaTen", small: false }, 'Returned obj did not equal expected');
+        });
+        it('should add small class if between 10 and 16', function() {
+          assert.deepEqual(codeBadges()._validate.nameLength("thisisLonger"), { name: "thisisLonger", small: true }, 'Returned obj did not equal expected');
+          assert.deepEqual(codeBadges()._validate.nameLength("thisisLongester"), { name: "thisisLongester", small: true }, 'Returned obj did not equal expected');
+        });
+    });
+});
+
+
 // API CALLS
 describe('_get', function() {
     this.timeout(5000); // allow all get requests 5 seconds to fetch data (increased from standard 2 secs)
@@ -27,7 +42,7 @@ describe('_get', function() {
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
                     assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
-                    done(); // call "done()" the parameter
+                    done(); // finished
                 });
             });
         });
@@ -44,7 +59,7 @@ describe('_get', function() {
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
                     assert.typeOf(data.bottom, 'number', 'data.bottom is not a number');
-                    done(); // call "done()" the parameter
+                    done(); // finished
                 });
             });
         });
@@ -61,7 +76,7 @@ describe('_get', function() {
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
                     assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
-                    done(); // call "done()" the parameter
+                    done(); // finished
                 });
             });
         });
@@ -78,7 +93,7 @@ describe('_get', function() {
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
                     assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
-                    done(); // call "done()" the parameter
+                    done(); // finished
                 });
             });
         });
@@ -95,7 +110,7 @@ describe('_get', function() {
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
                     assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
-                    done(); // call "done()" the parameter
+                    done(); // finished
                 });
             });
         });
@@ -112,7 +127,7 @@ describe('_get', function() {
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
                     assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
-                    done(); // call "done()" the parameter
+                    done(); // finished
                 });
             });
         });
