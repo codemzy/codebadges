@@ -19,6 +19,7 @@
             var points = response.match(/<h3 class="padding-right--quarter">([\s|\S]*?)<\/h3>[\s|\S]*?<small>total points<\/small>/m)[1];
             var date = response.match(/<small class="text--ellipsis">Joined([\s|\S]*?)<\/small>/m)[1].split(", ")[1];
             callback(false, { top: badges, top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date });
+            return { top: badges, top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date };
         }).fail(function() {
             callback("error");
         });
@@ -128,16 +129,33 @@
     // CODEBADGES METHODS
     codeBadges.prototype = {
         
+        // api calls
+        _api: {
+            _codecademyAPI: function(name, callback) {
+                var url = 'https://www.codecademy.com/' + name; // no api so scraping
+                $.get(url, function(response) {
+                    var badges = response.match(/<p>Skills completed<\/p>[\s|\S]*?<h3>([\s|\S]*?)<\/h3>[\s|\S]*?<p>Badges<\/p>/m)[1];
+                    var points = response.match(/<h3 class="padding-right--quarter">([\s|\S]*?)<\/h3>[\s|\S]*?<small>total points<\/small>/m)[1];
+                    var date = response.match(/<small class="text--ellipsis">Joined([\s|\S]*?)<\/small>/m)[1].split(", ")[1];
+                    callback(false, { top: badges, top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date });
+                    return { top: badges, top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date };
+                }).fail(function() {
+                    callback("error");
+                });
+            }
+        },
+        
         // Codecademy badge
         codecademy: function(newName) {
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            codecademyAPI(name, function(err, data) {
+            this._api._codecademyAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.codecademy .inner').html(html);
-            });
+                this.codecademy = data; // add data to object for testing
+            }.bind(this));
             return this; // return this so can chain methods
         },
         
