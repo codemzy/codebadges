@@ -30,6 +30,7 @@ describe('_get', function() {
         it('should return user data object', function(done) { // added "done" as parameter
             assert.doesNotThrow(function() {
                 codeBadges()._get._codecademyAPI("codemzy", function(err, data) { // pass callback 
+                    if (err) return done(err); // handle error
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
                     assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
@@ -46,6 +47,7 @@ describe('_get', function() {
         it('should return user data object', function(done) { // added "done" as parameter
             assert.doesNotThrow(function() {
                 codeBadges()._get._codeschoolAPI("codemzy", function(err, data) { // pass callback 
+                    if (err) return done(err); // handle error
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
                     assert.typeOf(data.bottom, 'number', 'data.bottom is not a string');
