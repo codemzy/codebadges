@@ -12,35 +12,6 @@
     
     // API CALLS
     
-    var codecademyAPI = function(name, callback) {
-        var url = 'https://www.codecademy.com/' + name; // no api so scraping
-        $.get(url, function(response) {
-            var badges = response.match(/<p>Skills completed<\/p>[\s|\S]*?<h3>([\s|\S]*?)<\/h3>[\s|\S]*?<p>Badges<\/p>/m)[1];
-            var points = response.match(/<h3 class="padding-right--quarter">([\s|\S]*?)<\/h3>[\s|\S]*?<small>total points<\/small>/m)[1];
-            var date = response.match(/<small class="text--ellipsis">Joined([\s|\S]*?)<\/small>/m)[1].split(", ")[1];
-            callback(false, { top: badges, top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date });
-            return { top: badges, top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date };
-        }).fail(function() {
-            callback("error");
-        });
-    };
-    
-    var codeSchoolAPI = function(name, callback) {
-        var url = 'https://www.codeschool.com/users/' + name + '.json';
-        $.ajax({
-          type: "GET",
-          dataType: 'jsonp',
-          url: url
-        }).done(function(response) {
-            var badges = response.badges.length;
-            var score = response.user.total_score;
-            var date = response.user.member_since.split("-")[0];
-            callback(false, { top: badges, top_type: "badges", user_type: "CodeSchool Student", bottom: score, bottom_type: "Score", date: date });
-        }).fail(function() {
-            callback("error");
-        });
-    };
-    
     var codeWarsAPI = function(name, callback) {
         var url = 'https://allorigins.us/get?url=' + encodeURIComponent('https://www.codewars.com/users/') + name + '&callback=?'; // scraping via allorigins due to CORS
         $.get(url, function(data){
@@ -156,6 +127,40 @@
                 }).fail(function() {
                     callback("error");
                 });
+            },
+            _codewarsAPI: function(name, callback) {
+                var url = 'https://allorigins.us/get?url=' + encodeURIComponent('https://www.codewars.com/users/') + name + '&callback=?'; // scraping via allorigins due to CORS
+                $.get(url, function(data){
+                    var points = data.contents.match(/Honor:<\/b>(.+?)<\/div>/m)[1];
+                    var kyu = data.contents.match(/Rank:<\/b>(.+?)<\/div>/m)[1];
+                    var date = data.contents.match(/Member Since:<\/b>(.+?)<\/div>/m)[1].split(" ")[1];
+                    callback(false, { top: parseInt(points, 10), top_type: "honor", user_type: "CodeWars Member", bottom: kyu, bottom_type: "Rank", date: date });
+                }).fail(function() {
+                    callback("error");
+                });
+            },
+            _freecodecampAPI: function(name, callback) {
+                var url = 'https://www.freecodecamp.com/' + name; // request user data from FCC (no api so scraping off user page)
+                $.get(url, function(response) {
+                    var points = response.match(/<h1 class="flat-top text-primary">\[ ([\s|\S]*?) \]<\/h1>/)[1];
+                    var challenges = response.replace(/<thead>[\s|\S]*?<\/thead>/g).match(/<tr>/g).length + " challenges";
+                    // get the dates from the first item in the first table
+                    var challengeTables = response.match(/<table[\s|\S]*?<\/table>/g).join(" ");
+                    var dateArr = $(challengeTables).find('tbody').find('tr:first td:eq(1)');
+                    var dates = []; // array to hold years
+                    for (var i = 0; i < 3; i++) {
+                        // get the year
+                        dates.push(parseInt($(dateArr[i]).text().split(",")[1], 10));
+                    }
+                    // sort lowest first
+                    dates.sort(function(a, b) {
+                      return a - b;
+                    });
+                    var date = dates[0];
+                    callback(false, { top: parseInt(points, 10), top_type: "points", user_type: "FreeCodeCamp Student", bottom: challenges, bottom_type: "Completed", date: date });
+                }).fail(function() {
+                    callback("error");
+                });
             }
         },
         
@@ -189,7 +194,7 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            codeWarsAPI(name, function(err, data) {
+            this._get._codewarsAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.codewars .inner').html(html);
@@ -202,7 +207,7 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            freeCodeCampAPI(name, function(err, data) {
+            this._get._freecodecampAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.fcc .inner').html(html);

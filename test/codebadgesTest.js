@@ -1,15 +1,7 @@
 /* global chai, codeBadges */
 
-// example test
+// use assert
 var assert = chai.assert;
-
-describe('Array', function() {
-  it('should start empty', function() {
-    var arr = [];
-
-    assert.equal(arr.length, 0, 'Array length was not 0');
-  });
-});
 
 // MAIN
 describe('codeBadges', function() {
@@ -39,7 +31,7 @@ describe('_get', function() {
             });
         });
     });
-    // codecademy
+    // codeschool
     describe('_codeschoolAPI', function() {
         it('should exist', function() {
             assert.exists(codeBadges()._get._codeschoolAPI, 'codeschool api does not exist');
@@ -50,11 +42,63 @@ describe('_get', function() {
                     if (err) return done(err); // handle error
                     assert.isObject(data, 'data returned is not an object');
                     assert.typeOf(data.top, 'number', 'data.top is not a number');
-                    assert.typeOf(data.bottom, 'number', 'data.bottom is not a string');
+                    assert.typeOf(data.bottom, 'number', 'data.bottom is not a number');
                     done(); // call "done()" the parameter
                 });
             });
         });
     });
+    // codewars
+    describe('_codewarsAPI', function() {
+        it('should exist', function() {
+            assert.exists(codeBadges()._get._codewarsAPI, 'codewars api does not exist');
+        });
+        it('should return user data object', function(done) { // added "done" as parameter
+            assert.doesNotThrow(function() {
+                codeBadges()._get._codewarsAPI("codemzy", function(err, data) { // pass callback 
+                    if (err) return done(err); // handle error
+                    assert.isObject(data, 'data returned is not an object');
+                    assert.typeOf(data.top, 'number', 'data.top is not a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    done(); // call "done()" the parameter
+                });
+            });
+        });
+    });
+    // freecodecamp
+    describe('_freecodecampAPI', function() {
+        it('should exist', function() {
+            assert.exists(codeBadges()._get._freecodecampAPI, 'freecodecamp api does not exist');
+        });
+        it('should return user data object', function(done) { // added "done" as parameter
+            assert.doesNotThrow(function() {
+                codeBadges()._get._freecodecampAPI("codemzy", function(err, data) { // pass callback 
+                    if (err) return done(err); // handle error
+                    assert.isObject(data, 'data returned is not an object');
+                    assert.typeOf(data.top, 'number', 'data.top is not a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    done(); // call "done()" the parameter
+                });
+            });
+        });
+    });
+    // github
+    describe('_githubAPI', function() {
+        it('should exist', function() {
+            assert.exists(codeBadges()._get._githubAPI, 'github api does not exist');
+        });
+        it('should return user data object', function(done) { // added "done" as parameter
+            assert.doesNotThrow(function() {
+                codeBadges()._get._githubAPI("codemzy", function(err, data) { // pass callback 
+                    if (err) return done(err); // handle error
+                    assert.isObject(data, 'data returned is not an object');
+                    assert.typeOf(data.top, 'number', 'data.top is not a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    done(); // call "done()" the parameter
+                });
+            });
+        });
+    });
+    
     
 });
