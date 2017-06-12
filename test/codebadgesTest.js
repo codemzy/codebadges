@@ -16,16 +16,27 @@ describe('codeBadges', function() {
 describe('_validate', function() {
     describe('nameLength', function() {
         it('should not change length or class if length 10 or less', function() {
-          assert.deepEqual(codeBadges()._validate.nameLength("codemzy"), { name: "codemzy", small: false }, 'Returned obj did not equal expected');
-          assert.deepEqual(codeBadges()._validate.nameLength("thisisaTen"), { name: "thisisaTen", small: false }, 'Returned obj did not equal expected');
+            assert.deepEqual(codeBadges()._validate.nameLength("codemzy"), { name: "codemzy", small: false }, 'Returned obj did not equal expected');
+            assert.deepEqual(codeBadges()._validate.nameLength("thisisaTen"), { name: "thisisaTen", small: false }, 'Returned obj did not equal expected');
         });
         it('should add small class if between 10 and 16', function() {
-          assert.deepEqual(codeBadges()._validate.nameLength("thisisLonger"), { name: "thisisLonger", small: true }, 'Returned obj did not equal expected');
-          assert.deepEqual(codeBadges()._validate.nameLength("thisisLongester"), { name: "thisisLongester", small: true }, 'Returned obj did not equal expected');
+            assert.deepEqual(codeBadges()._validate.nameLength("thisisLonger"), { name: "thisisLonger", small: true }, 'Returned obj did not equal expected');
+            assert.deepEqual(codeBadges()._validate.nameLength("thisisLongester"), { name: "thisisLongester", small: true }, 'Returned obj did not equal expected');
         });
         it('should truncate name if over 16', function() {
             assert.deepEqual(codeBadges()._validate.nameLength("thisisTooooooLong"), { name: "thisisToooooo...", small: true }, 'First returned obj did not equal expected');
             assert.deepEqual(codeBadges()._validate.nameLength("thisisSooooooooooooooLong"), { name: "thisisSoooooo...", small: true }, 'Second returned obj did not equal expected');
+        });
+    });
+    describe('maxLength', function() {
+        it('should return name if below 150', function() {
+            assert.isNotFalse(codeBadges()._validate.maxLength("codemzy"), 'Should not return false');
+            assert.equal(codeBadges()._validate.maxLength("codemzy"), 'codemzy', 'Should return name');
+            assert.isNotFalse(codeBadges()._validate.maxLength("averyveryveryveryveryveryveryveryveryveryverylongname"), 'Should not return false');
+        });
+        it('should be false if name over 150', function() {
+            var name = "averyveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongnametoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooolong";
+            assert.isFalse(codeBadges()._validate.maxLength(name), 'Name too long should be false');
         });
     });
 });

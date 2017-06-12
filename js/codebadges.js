@@ -136,6 +136,14 @@
                 } else {
                     return { name: name, small: false };
                 }
+            },
+            maxLength: function(name) {
+                if (typeof name === 'string' || name instanceof String) {
+                    if (name.length < 150) {
+                        return name;
+                    }
+                }
+                return false;
             }
         },
         
