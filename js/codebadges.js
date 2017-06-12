@@ -26,8 +26,7 @@
     };
     // return html
     var errorHTML = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
-    var createHTML = function(data, name) {
-        var nameObj = nameLength(name);
+    var createHTML = function(data, nameObj) {
         var nameClass = nameObj.small ? "smaller" : "";
         return '<div class="margin-top big">' + data.top + '</div><div class="small">' + data.top_type + '</div>' +
                 '<div id="user" class="' + nameClass + '">' + nameObj.name + '</div><div class="small">' + data.user_type + '</div>' +
@@ -126,18 +125,16 @@
         
         _html: {
             badgeDisplay: function(badge, data, name) {
-                var html = createHTML(data, name);
+                var nameObj = this.nameDisplay(name);
+                var html = createHTML(data, nameObj);
                 $('.code-badge.' + badge + ' .inner').html(html);
                 return html;
             },
             badgeError: function(badge) {
                 $('.code-badge.' + badge + ' .inner').html(errorHTML);
                 return errorHTML;
-            }
-        },
-        
-        _validate: {
-            nameLength: function(name) {
+            },
+            nameDisplay: function(name) {
                 if (name.length > 10) {
                     if (name.length > 16) {
                         var shortName = name.slice(0, 13); // truncate
@@ -148,7 +145,10 @@
                 } else {
                     return { name: name, small: false };
                 }
-            },
+            }
+        },
+        
+        _validate: {
             checkName: function(name) {
                 if (typeof name === 'string' || name instanceof String) {
                     if (name.length < 150) {
@@ -202,14 +202,22 @@
         },
         // CodeWars badge
         codeWars: function(newName) {
-            // get the name 
+            var badge = "codewars";
+            // get and validate the name 
             var name = newName || this.name; // defaults to name passed to init
-            // call api function
-            this._get._codewarsAPI(name, function(err, data) {
-                // update the inner html of badge with all the info
-                var html = err ? errorHTML : createHTML(data, name);
-                $('.code-badge.codewars .inner').html(html);
-            });
+            if (this._validate.checkName(name)) { // check if name given is a string and not too long
+                // call api function
+                this._get["_" + badge + "API"](name, function(err, data) {
+                    // update the inner html of badge with all the info
+                    if (!err) {
+                        this._html.badgeDisplay(badge, data, name);
+                    } else if (err) {
+                        this._html.badgeError(badge); // error from api
+                    }
+                }.bind(this));
+            } else {
+                this._html.badgeError(badge); // error failed checkName
+            }
             return this; // return this so can chain methods
         },
         // FreeCodeCamp badge
@@ -238,14 +246,22 @@
         },
         // TreeHouse badge
         treeHouse: function(newName) {
-            // get the name 
+            var badge = "treehouse";
+            // get and validate the name 
             var name = newName || this.name; // defaults to name passed to init
-            // call api function
-            this._get._treehouseAPI(name, function(err, data) {
-                // update the inner html of badge with all the info
-                var html = err ? errorHTML : createHTML(data, name);
-                $('.code-badge.treehouse .inner').html(html);
-            });
+            if (this._validate.checkName(name)) { // check if name given is a string and not too long
+                // call api function
+                this._get["_" + badge + "API"](name, function(err, data) {
+                    // update the inner html of badge with all the info
+                    if (!err) {
+                        this._html.badgeDisplay(badge, data, name);
+                    } else if (err) {
+                        this._html.badgeError(badge); // error from api
+                    }
+                }.bind(this));
+            } else {
+                this._html.badgeError(badge); // error failed checkName
+            }
             return this; // return this so can chain methods
         }
         
