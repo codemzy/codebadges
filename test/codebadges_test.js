@@ -54,19 +54,19 @@ describe('_validate', function() {
             assert.deepEqual(codeBadges()._validate.nameLength("thisisSooooooooooooooLong"), { name: "thisisSoooooo...", small: true }, 'Second returned obj did not equal expected');
         });
     });
-    describe('maxLength', function() {
+    describe('checkName', function() {
         it('should return name if below 150', function() {
-            assert.isNotFalse(codeBadges()._validate.maxLength("codemzy"), 'Should not return false');
-            assert.equal(codeBadges()._validate.maxLength("codemzy"), 'codemzy', 'Should return name');
-            assert.isNotFalse(codeBadges()._validate.maxLength("averyveryveryveryveryveryveryveryveryveryverylongname"), 'Should not return false');
+            assert.isNotFalse(codeBadges()._validate.checkName("codemzy"), 'Should not return false');
+            assert.equal(codeBadges()._validate.checkName("codemzy"), 'codemzy', 'Should return name');
+            assert.isNotFalse(codeBadges()._validate.checkName("averyveryveryveryveryveryveryveryveryveryverylongname"), 'Should not return false');
         });
         it('should be false if name over 150', function() {
             var name = "averyveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongnametoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooolong";
-            assert.isFalse(codeBadges()._validate.maxLength(name), 'Name too long should be false');
+            assert.isFalse(codeBadges()._validate.checkName(name), 'Name too long should be false');
         });
         it('should be false not a string', function() {
-            assert.isFalse(codeBadges()._validate.maxLength({ name: "notright" }), 'An object not a string');
-            assert.isFalse(codeBadges()._validate.maxLength(1234), 'A number not a string');
+            assert.isFalse(codeBadges()._validate.checkName({ name: "notright" }), 'An object not a string');
+            assert.isFalse(codeBadges()._validate.checkName(1234), 'A number not a string');
         });
     });
 });

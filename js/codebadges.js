@@ -149,7 +149,7 @@
                     return { name: name, small: false };
                 }
             },
-            maxLength: function(name) {
+            checkName: function(name) {
                 if (typeof name === 'string' || name instanceof String) {
                     if (name.length < 150) {
                         return name;
@@ -163,30 +163,41 @@
         // Codecademy badge
         codecademy: function(newName) {
             var badge = "codecademy";
-            // get the name 
+            // get and validate the name 
             var name = newName || this.name; // defaults to name passed to init
-            if (!this._validate.maxLength(name)) { // check if name given is a string and not too long
-                this._html.badgeError(badge);
-                return this;
+            if (this._validate.checkName(name)) { // check if name given is a string and not too long
+                // call api function
+                this._get["_" + badge + "API"](name, function(err, data) {
+                    // update the inner html of badge with all the info
+                    if (!err) {
+                        this._html.badgeDisplay(badge, data, name);
+                    } else if (err) {
+                        this._html.badgeError(badge); // error from api
+                    }
+                }.bind(this));
+            } else {
+                this._html.badgeError(badge); // error failed checkName
             }
-            // call api function
-            this._get._codecademyAPI(name, function(err, data) {
-                // update the inner html of badge with all the info
-                var html = err ? errorHTML : createHTML(data, name);
-                $('.code-badge.codecademy .inner').html(html);
-            });
             return this; // return this so can chain methods
         },
         // CodeSchool badge
         codeSchool: function(newName) {
-            // get the name 
+            var badge = "codeschool";
+            // get and validate the name 
             var name = newName || this.name; // defaults to name passed to init
-            // call api function
-            this._get._codeschoolAPI(name, function(err, data) {
-                // update the inner html of badge with all the info
-                var html = err ? errorHTML : createHTML(data, name);
-                $('.code-badge.codeschool .inner').html(html);
-            });
+            if (this._validate.checkName(name)) { // check if name given is a string and not too long
+                // call api function
+                this._get["_" + badge + "API"](name, function(err, data) {
+                    // update the inner html of badge with all the info
+                    if (!err) {
+                        this._html.badgeDisplay(badge, data, name);
+                    } else if (err) {
+                        this._html.badgeError(badge); // error from api
+                    }
+                }.bind(this));
+            } else {
+                this._html.badgeError(badge); // error failed checkName
+            }
             return this; // return this so can chain methods
         },
         // CodeWars badge
