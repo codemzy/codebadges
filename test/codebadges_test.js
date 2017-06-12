@@ -15,6 +15,9 @@ describe('codeBadges', function() {
 // HTML
 describe('_html', function() {
     describe('badgeError', function() {
+        it('should exist', function() {
+            assert.exists(codeBadges()._html.badgeError(), 'badgeError function should exist');
+        });
         it('should return an error html string', function() {
             var expected = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
             assert.equal(codeBadges()._html.badgeError(), expected, 'Returned error html string should match');
