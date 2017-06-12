@@ -1,0 +1,23 @@
+{
+  "name": "codebadges",
+  "version": "1.0.0",
+  "description": "Badges to show off your progress at GitHub, FreeCodeCamp, CodeSchool, Codecademy, Treehouse etc",
+  "main": "js/codebadges.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codemzy/codebadges.git"
+  },
+  "keywords": [
+    "code",
+    "badges"
+  ],
+  "author": "codemzy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codemzy/codebadges/issues"
+  },
+  "homepage": "https://codemzy.github.io/codebadges"
+}
