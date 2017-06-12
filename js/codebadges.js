@@ -125,8 +125,10 @@
         },
         
         _html: {
-            badgeDisplay: function() {
-                
+            badgeDisplay: function(badge, data, name) {
+                var html = createHTML(data, name);
+                $('.code-badge.' + badge + ' .inner').html(html);
+                return html;
             },
             badgeError: function(badge) {
                 $('.code-badge.' + badge + ' .inner').html(errorHTML);

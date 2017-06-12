@@ -14,9 +14,22 @@ describe('codeBadges', function() {
 
 // HTML
 describe('_html', function() {
+    describe('badgeDisplay', function() {
+        it('should exist', function() {
+            assert.exists(codeBadges()._html.badgeDisplay, 'badgeDisplay should exist');
+        });
+        it('should return a html string', function() {
+            var data = { top: 123, top_type: "points", user_type: "Test Student", bottom: "123", bottom_type: "Completed", date: "2015" };
+            var expected = '<div class="margin-top big">' + 123 + '</div><div class="small">' + "points" + '</div>' +
+                    '<div id="user" class="' + "" + '">' + "codemzy" + '</div><div class="small">' + "Test Student" + '</div>' +
+                    '<div class="small margin-top">' + "Completed" + '</div><div><span>' + "123" + '</span></div>' +
+                    '<div class="small">since <span id="date">' + "2015" + '</span></div>';
+            assert.equal(codeBadges()._html.badgeDisplay("none", data, "codemzy"), expected, 'Returned html string should match');
+        });
+    });
     describe('badgeError', function() {
         it('should exist', function() {
-            assert.exists(codeBadges()._html.badgeError(), 'badgeError function should exist');
+            assert.exists(codeBadges()._html.badgeError, 'badgeError function should exist');
         });
         it('should return an error html string', function() {
             var expected = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
