@@ -10,33 +10,6 @@
         return new codeBadges.init(name);
     };
     
-    // API CALLS
-    
-    
-    var gitHubAPI = function(name, callback) {
-        var url = 'https://api.github.com/users/' + name;
-        $.get(url, function(response) {
-            var followers = response.followers;
-            var repos = response.public_repos + " public repos";
-            var date = response.created_at.split("-")[0];
-            callback(false, { top: followers, top_type: "followers", user_type: "GitHub User", bottom: repos, bottom_type: "Created", date: date });
-        }).fail(function() {
-            callback("error");
-        });
-    };
-    
-    var treeHouseAPI = function(name, callback) {
-        var url ='https://teamtreehouse.com/' + name + '.json';
-        $.get(url, function(response) {
-            var points = response.points.total;
-            var badges = response.badges.length + " achievements";
-            var date = response.badges && response.badges.length > 0 ? response.badges[0].earned_date.split("-")[0] : "-";
-            callback(false, { top: points, top_type: "points", user_type: "Treehouse Student", bottom: badges, bottom_type: "Completed", date: date });
-        }).fail(function() {
-            callback("error");
-        });
-    };
-    
     // HTML 
     // check name length
     var nameLength = function(name) {
@@ -65,7 +38,7 @@
     // CODEBADGES METHODS
     codeBadges.prototype = {
         
-        // api calls
+        // api get requests
         _get: {
             _codecademyAPI: function(name, callback) {
                 var url = 'https://www.codecademy.com/' + name; // no api so scraping
@@ -220,7 +193,7 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            treeHouseAPI(name, function(err, data) {
+            this._get._treehouseAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.treehouse .inner').html(html);
