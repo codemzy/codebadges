@@ -130,7 +130,7 @@
     codeBadges.prototype = {
         
         // api calls
-        _api: {
+        _get: {
             _codecademyAPI: function(name, callback) {
                 var url = 'https://www.codecademy.com/' + name; // no api so scraping
                 $.get(url, function(response) {
@@ -138,6 +138,21 @@
                     var points = response.match(/<h3 class="padding-right--quarter">([\s|\S]*?)<\/h3>[\s|\S]*?<small>total points<\/small>/m)[1];
                     var date = response.match(/<small class="text--ellipsis">Joined([\s|\S]*?)<\/small>/m)[1].split(", ")[1];
                     callback(false, { top: parseInt(badges, 10), top_type: "badges", user_type: "Codecademy Student", bottom: points, bottom_type: "Points", date: date });
+                }).fail(function() {
+                    callback("error");
+                });
+            },
+            _codeschoolAPI: function(name, callback) {
+                var url = 'https://www.codeschool.com/users/' + name + '.json';
+                $.ajax({
+                  type: "GET",
+                  dataType: 'jsonp',
+                  url: url
+                }).done(function(response) {
+                    var badges = response.badges.length;
+                    var score = response.user.total_score;
+                    var date = response.user.member_since.split("-")[0];
+                    callback(false, { top: badges, top_type: "badges", user_type: "CodeSchool Student", bottom: score, bottom_type: "Score", date: date });
                 }).fail(function() {
                     callback("error");
                 });
@@ -149,7 +164,7 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            this._api._codecademyAPI(name, function(err, data) {
+            this._get._codecademyAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.codecademy .inner').html(html);
@@ -162,7 +177,7 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            codeSchoolAPI(name, function(err, data) {
+            this._get._codeschoolAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.codeschool .inner').html(html);
