@@ -124,6 +124,16 @@
             }
         },
         
+        _html: {
+            badgeDisplay: function() {
+                
+            },
+            badgeError: function(badge) {
+                $('.code-badge.' + badge + ' .inner').html(errorHTML);
+                return errorHTML;
+            }
+        },
+        
         _validate: {
             nameLength: function(name) {
                 if (name.length > 10) {
@@ -150,10 +160,11 @@
         // BADGE METHODS
         // Codecademy badge
         codecademy: function(newName) {
+            var badge = "codecademy";
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             if (!this._validate.maxLength(name)) { // check if name given is a string and not too long
-                $('.code-badge.codecademy .inner').html(errorHTML);
+                this._html.badgeError(badge);
                 return this;
             }
             // call api function

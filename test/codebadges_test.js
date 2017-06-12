@@ -7,9 +7,19 @@ var assert = chai.assert;
 describe('codeBadges', function() {
   it('should return an object with the name passed as an argument', function() {
       var result = codeBadges("codemzy");
-      assert.equal(result.name, 'codemzy', 'Returned name did not match');
+      assert.equal(result.name, 'codemzy', 'Returned name should match');
   });
   it('test changing names');
+});
+
+// HTML
+describe('_html', function() {
+    describe('badgeError', function() {
+        it('should return an error html string', function() {
+            var expected = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
+            assert.equal(codeBadges()._html.badgeError(), expected, 'Returned error html string should match');
+        });
+    });
 });
 
 // VALIDATE
