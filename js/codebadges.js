@@ -12,41 +12,6 @@
     
     // API CALLS
     
-    var codeWarsAPI = function(name, callback) {
-        var url = 'https://allorigins.us/get?url=' + encodeURIComponent('https://www.codewars.com/users/') + name + '&callback=?'; // scraping via allorigins due to CORS
-        $.get(url, function(data){
-            var kyu = data.contents.match(/Rank:<\/b>(.+?)<\/div>/m)[1];
-            var points = data.contents.match(/Honor:<\/b>(.+?)<\/div>/m)[1];
-            var date = data.contents.match(/Member Since:<\/b>(.+?)<\/div>/m)[1].split(" ")[1];
-            callback(false, { top: points, top_type: "honor", user_type: "CodeWars Member", bottom: kyu, bottom_type: "Rank", date: date });
-        }).fail(function() {
-            callback("error");
-        });
-    };
-    
-    var freeCodeCampAPI = function(name, callback) {
-        var url = 'https://www.freecodecamp.com/' + name; // request user data from FCC (no api so scraping off user page)
-        $.get(url, function(response) {
-            var points = response.match(/<h1 class="flat-top text-primary">\[ ([\s|\S]*?) \]<\/h1>/)[1];
-            var challenges = response.replace(/<thead>[\s|\S]*?<\/thead>/g).match(/<tr>/g).length + " challenges";
-            // get the dates from the first item in the first table
-            var challengeTables = response.match(/<table[\s|\S]*?<\/table>/g).join(" ");
-            var dateArr = $(challengeTables).find('tbody').find('tr:first td:eq(1)');
-            var dates = []; // array to hold years
-            for (var i = 0; i < 3; i++) {
-                // get the year
-                dates.push(parseInt($(dateArr[i]).text().split(",")[1], 10));
-            }
-            // sort lowest first
-            dates.sort(function(a, b) {
-              return a - b;
-            });
-            var date = dates[0];
-            callback(false, { top: points, top_type: "points", user_type: "FreeCodeCamp Student", bottom: challenges, bottom_type: "Completed", date: date });
-        }).fail(function() {
-            callback("error");
-        });
-    };
     
     var gitHubAPI = function(name, callback) {
         var url = 'https://api.github.com/users/' + name;
@@ -161,6 +126,17 @@
                 }).fail(function() {
                     callback("error");
                 });
+            },
+            _githubAPI: function(name, callback) {
+                var url = 'https://api.github.com/users/' + name;
+                $.get(url, function(response) {
+                    var followers = response.followers;
+                    var repos = response.public_repos + " public repos";
+                    var date = response.created_at.split("-")[0];
+                    callback(false, { top: followers, top_type: "followers", user_type: "GitHub User", bottom: repos, bottom_type: "Created", date: date });
+                }).fail(function() {
+                    callback("error");
+                });
             }
         },
         
@@ -220,7 +196,7 @@
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
             // call api function
-            gitHubAPI(name, function(err, data) {
+            this._get._githubAPI(name, function(err, data) {
                 // update the inner html of badge with all the info
                 var html = err ? errorHTML : createHTML(data, name);
                 $('.code-badge.gh .inner').html(html);
