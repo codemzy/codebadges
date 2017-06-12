@@ -152,6 +152,10 @@
         codecademy: function(newName) {
             // get the name 
             var name = newName || this.name; // defaults to name passed to init
+            if (!this._validate.maxLength(name)) { // check if name given is a string and not too long
+                $('.code-badge.codecademy .inner').html(errorHTML);
+                return this;
+            }
             // call api function
             this._get._codecademyAPI(name, function(err, data) {
                 // update the inner html of badge with all the info

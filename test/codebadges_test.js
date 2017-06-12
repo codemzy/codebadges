@@ -38,6 +38,10 @@ describe('_validate', function() {
             var name = "averyveryveryveryveryveryveryveryveryveryveryveryveryveryveryveryverylongnametoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooolong";
             assert.isFalse(codeBadges()._validate.maxLength(name), 'Name too long should be false');
         });
+        it('should be false not a string', function() {
+            assert.isFalse(codeBadges()._validate.maxLength({ name: "notright" }), 'An object not a string');
+            assert.isFalse(codeBadges()._validate.maxLength(1234), 'A number not a string');
+        });
     });
 });
 
