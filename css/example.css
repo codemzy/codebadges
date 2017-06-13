@@ -5,6 +5,11 @@
 
 /*STYLES FOR INDEX DEMO PAGE*/
 
+#share {
+    padding: 30px;
+    margin-top: 30px;
+}
+
 #footer {
     margin-top: 30px;
     margin-bottom: 0px;
