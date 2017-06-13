@@ -209,7 +209,9 @@
     
     // codeBadges.init function constructor
     codeBadges.init = function(name) {
-        this.name = name || 'codemzy';
+        if (this._validate.checkName(name)) { // check if name given is a string and not too long
+            this.name = name || 'codemzy';
+        }
     };
     
     // codeBadges init prototype same as the codeBadges one (both point to the same prototype)
