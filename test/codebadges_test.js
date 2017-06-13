@@ -38,16 +38,16 @@ describe('_html', function() {
     });
     describe('nameDisplay', function() {
         it('should not change length or class if length 10 or less', function() {
-            assert.deepEqual(codeBadges()._html.nameDisplay("codemzy"), { name: "codemzy", small: false }, 'Returned obj did not equal expected');
-            assert.deepEqual(codeBadges()._html.nameDisplay("thisisaTen"), { name: "thisisaTen", small: false }, 'Returned obj did not equal expected');
+            assert.deepEqual(codeBadges()._html.nameDisplay("codemzy"), { name: "codemzy", small: false }, 'First returned obj should equal expected');
+            assert.deepEqual(codeBadges()._html.nameDisplay("thisisaTen"), { name: "thisisaTen", small: false }, 'Second returned obj should equal expected');
         });
         it('should add small class if between 10 and 16', function() {
-            assert.deepEqual(codeBadges()._html.nameDisplay("thisisLonger"), { name: "thisisLonger", small: true }, 'Returned obj did not equal expected');
-            assert.deepEqual(codeBadges()._html.nameDisplay("thisisLongester"), { name: "thisisLongester", small: true }, 'Returned obj did not equal expected');
+            assert.deepEqual(codeBadges()._html.nameDisplay("thisisLonger"), { name: "thisisLonger", small: true }, 'First returned obj should equal expected');
+            assert.deepEqual(codeBadges()._html.nameDisplay("thisisLongester"), { name: "thisisLongester", small: true }, 'Second returned obj should equal expected');
         });
         it('should truncate name if over 16', function() {
-            assert.deepEqual(codeBadges()._html.nameDisplay("thisisTooooooLong"), { name: "thisisToooooo...", small: true }, 'First returned obj did not equal expected');
-            assert.deepEqual(codeBadges()._html.nameDisplay("thisisSooooooooooooooLong"), { name: "thisisSoooooo...", small: true }, 'Second returned obj did not equal expected');
+            assert.deepEqual(codeBadges()._html.nameDisplay("thisisTooooooLong"), { name: "thisisToooooo...", small: true }, 'First returned obj should equal expected');
+            assert.deepEqual(codeBadges()._html.nameDisplay("thisisSooooooooooooooLong"), { name: "thisisSoooooo...", small: true }, 'Second returned should not equal expected');
         });
     });
 });
