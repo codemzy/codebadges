@@ -9,7 +9,12 @@ describe('codeBadges', function() {
       var result = codeBadges("codemzy");
       assert.equal(result.name, 'codemzy', 'Returned name should match');
   });
-  it('test changing names');
+  it('should only accept strings as names', function() {
+      var resultOne = codeBadges(123);
+      var resultTwo = codeBadges({ an: 'object' });
+      assert.equal(resultOne.name, undefined, 'Returned name should be undefined');
+      assert.equal(resultTwo.name, undefined, 'Returned name should be undefined');
+  });
 });
 
 // HTML
