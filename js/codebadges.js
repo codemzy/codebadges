@@ -175,31 +175,31 @@
             return this.anyBadge(badge, newName);
         },
         // CodeSchool badge
-        codeSchool: function(newName) {
+        codeschool: function(newName) {
             var badge = "codeschool";
             // get the badge
             return this.anyBadge(badge, newName);
         },
         // CodeWars badge
-        codeWars: function(newName) {
+        codewars: function(newName) {
             var badge = "codewars";
             // get the badge
             return this.anyBadge(badge, newName);
         },
         // FreeCodeCamp badge
-        freeCodeCamp: function(newName) {
+        freecodecamp: function(newName) {
             var badge = "freecodecamp";
             // get the badge
             return this.anyBadge(badge, newName);
         },
         // GitHub badge
-        gitHub: function(newName) {
+        github: function(newName) {
             var badge = "github";
             // get the badge
             return this.anyBadge(badge, newName);
         },
         // TreeHouse badge
-        treeHouse: function(newName) {
+        treehouse: function(newName) {
             var badge = "treehouse";
             // get the badge
             return this.anyBadge(badge, newName);
