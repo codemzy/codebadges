@@ -2,3 +2,10 @@
 .code-badge.pink-badge .outer {
   background-color: #DB0A5B;
 }
+
+/*STYLES FOR INDEX DEMO PAGE*/
+
+#footer {
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
