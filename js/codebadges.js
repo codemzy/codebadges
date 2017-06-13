@@ -11,21 +11,9 @@
     };
     
     // HTML 
-    // check name length
-    var nameLength = function(name) {
-        if (name.length > 10) {
-            if (name.length > 16) {
-                var shortName = name.split(0, 14) + "…"; // truncate
-                return { name: shortName, small: true };
-            } else {
-               return { name: name, small: true }; 
-            }
-        } else {
-            return { name: name, small: false };
-        }
-    };
-    // return html
+    // error html
     var errorHTML = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
+    // success html
     var createHTML = function(data, nameObj) {
         var nameClass = nameObj.small ? "smaller" : "";
         return '<div class="margin-top big">' + data.top + '</div><div class="small">' + data.top_type + '</div>' +
