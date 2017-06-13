@@ -65,8 +65,8 @@ describe('_validate', function() {
             assert.isFalse(codeBadges()._validate.checkName(name), 'Name too long should be false');
         });
         it('should be false not a string', function() {
-            assert.isFalse(codeBadges()._validate.checkName({ name: "notright" }), 'An object not a string');
-            assert.isFalse(codeBadges()._validate.checkName(1234), 'A number not a string');
+            assert.isFalse(codeBadges()._validate.checkName({ name: "notright" }), 'An object not a string should be false');
+            assert.isFalse(codeBadges()._validate.checkName(1234), 'A number not a string should be false');
         });
     });
 });
@@ -78,15 +78,15 @@ describe('_get', function() {
     // codecademy
     describe('_codecademyAPI', function() {
         it('should exist', function() {
-            assert.exists(codeBadges()._get._codecademyAPI, 'codecademy api does not exist');
+            assert.exists(codeBadges()._get._codecademyAPI, 'codecademy api should exist');
         });
         it('should return user data object', function(done) { // added "done" as parameter
             assert.doesNotThrow(function() {
                 codeBadges()._get._codecademyAPI("codemzy", function(err, data) { // pass callback 
                     if (err) return done(err); // handle error
-                    assert.isObject(data, 'data returned is not an object');
-                    assert.typeOf(data.top, 'number', 'data.top is not a number');
-                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    assert.isObject(data, 'data returned should be an object');
+                    assert.typeOf(data.top, 'number', 'data.top should be a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom should be a string');
                     done(); // finished
                 });
             });
@@ -95,15 +95,15 @@ describe('_get', function() {
     // codeschool
     describe('_codeschoolAPI', function() {
         it('should exist', function() {
-            assert.exists(codeBadges()._get._codeschoolAPI, 'codeschool api does not exist');
+            assert.exists(codeBadges()._get._codeschoolAPI, 'codeschool api should exist');
         });
         it('should return user data object', function(done) { // added "done" as parameter
             assert.doesNotThrow(function() {
                 codeBadges()._get._codeschoolAPI("codemzy", function(err, data) { // pass callback 
                     if (err) return done(err); // handle error
-                    assert.isObject(data, 'data returned is not an object');
-                    assert.typeOf(data.top, 'number', 'data.top is not a number');
-                    assert.typeOf(data.bottom, 'number', 'data.bottom is not a number');
+                    assert.isObject(data, 'data returned should be an object');
+                    assert.typeOf(data.top, 'number', 'data.top should be a number');
+                    assert.typeOf(data.bottom, 'number', 'data.bottom should be a number');
                     done(); // finished
                 });
             });
@@ -112,15 +112,15 @@ describe('_get', function() {
     // codewars
     describe('_codewarsAPI', function() {
         it('should exist', function() {
-            assert.exists(codeBadges()._get._codewarsAPI, 'codewars api does not exist');
+            assert.exists(codeBadges()._get._codewarsAPI, 'codewars api should exist');
         });
         it('should return user data object', function(done) { // added "done" as parameter
             assert.doesNotThrow(function() {
                 codeBadges()._get._codewarsAPI("codemzy", function(err, data) { // pass callback 
                     if (err) return done(err); // handle error
-                    assert.isObject(data, 'data returned is not an object');
-                    assert.typeOf(data.top, 'number', 'data.top is not a number');
-                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    assert.isObject(data, 'data returned should be an object');
+                    assert.typeOf(data.top, 'number', 'data.top should be a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom should be a string');
                     done(); // finished
                 });
             });
@@ -129,15 +129,15 @@ describe('_get', function() {
     // freecodecamp
     describe('_freecodecampAPI', function() {
         it('should exist', function() {
-            assert.exists(codeBadges()._get._freecodecampAPI, 'freecodecamp api does not exist');
+            assert.exists(codeBadges()._get._freecodecampAPI, 'freecodecamp api should exist');
         });
         it('should return user data object', function(done) { // added "done" as parameter
             assert.doesNotThrow(function() {
                 codeBadges()._get._freecodecampAPI("codemzy", function(err, data) { // pass callback 
                     if (err) return done(err); // handle error
-                    assert.isObject(data, 'data returned is not an object');
-                    assert.typeOf(data.top, 'number', 'data.top is not a number');
-                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    assert.isObject(data, 'data returned should be an object');
+                    assert.typeOf(data.top, 'number', 'data.top should be a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom should be a string');
                     done(); // finished
                 });
             });
@@ -146,15 +146,15 @@ describe('_get', function() {
     // github
     describe('_githubAPI', function() {
         it('should exist', function() {
-            assert.exists(codeBadges()._get._githubAPI, 'github api does not exist');
+            assert.exists(codeBadges()._get._githubAPI, 'github api should exist');
         });
         it('should return user data object', function(done) { // added "done" as parameter
             assert.doesNotThrow(function() {
                 codeBadges()._get._githubAPI("codemzy", function(err, data) { // pass callback 
                     if (err) return done(err); // handle error
-                    assert.isObject(data, 'data returned is not an object');
-                    assert.typeOf(data.top, 'number', 'data.top is not a number');
-                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    assert.isObject(data, 'data returned should be an object');
+                    assert.typeOf(data.top, 'number', 'data.top should be a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom should be a string');
                     done(); // finished
                 });
             });
@@ -163,15 +163,15 @@ describe('_get', function() {
     // treehouse
     describe('_treehouseAPI', function() {
         it('should exist', function() {
-            assert.exists(codeBadges()._get._treehouseAPI, 'treehouse api does not exist');
+            assert.exists(codeBadges()._get._treehouseAPI, 'treehouse api should exist');
         });
         it('should return user data object', function(done) { // added "done" as parameter
             assert.doesNotThrow(function() {
                 codeBadges()._get._treehouseAPI("ryancarson", function(err, data) { // pass callback 
                     if (err) return done(err); // handle error
-                    assert.isObject(data, 'data returned is not an object');
-                    assert.typeOf(data.top, 'number', 'data.top is not a number');
-                    assert.typeOf(data.bottom, 'string', 'data.bottom is not a string');
+                    assert.isObject(data, 'data returned should be an object');
+                    assert.typeOf(data.top, 'number', 'data.top should be a number');
+                    assert.typeOf(data.bottom, 'string', 'data.bottom should be a string');
                     done(); // finished
                 });
             });
