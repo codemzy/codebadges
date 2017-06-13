@@ -148,9 +148,8 @@
         },
         
         // BADGE METHODS
-        // Codecademy badge
-        codecademy: function(newName) {
-            var badge = "codecademy";
+        // Any badge
+        anyBadge: function(badge, newName) {
             // get and validate the name 
             var name = newName || this.name; // defaults to name passed to init
             if (this._validate.checkName(name)) { // check if name given is a string and not too long
@@ -167,106 +166,43 @@
                 this._html.badgeError(badge); // error failed checkName
             }
             return this; // return this so can chain methods
+        },
+        
+        // Codecademy badge
+        codecademy: function(newName) {
+            var badge = "codecademy";
+            // get the badge
+            return this.anyBadge(badge, newName);
         },
         // CodeSchool badge
         codeSchool: function(newName) {
             var badge = "codeschool";
-            // get and validate the name 
-            var name = newName || this.name; // defaults to name passed to init
-            if (this._validate.checkName(name)) { // check if name given is a string and not too long
-                // call api function
-                this._get["_" + badge + "API"](name, function(err, data) {
-                    // update the inner html of badge with all the info
-                    if (!err) {
-                        this._html.badgeDisplay(badge, data, name);
-                    } else if (err) {
-                        this._html.badgeError(badge); // error from api
-                    }
-                }.bind(this));
-            } else {
-                this._html.badgeError(badge); // error failed checkName
-            }
-            return this; // return this so can chain methods
+            // get the badge
+            return this.anyBadge(badge, newName);
         },
         // CodeWars badge
         codeWars: function(newName) {
             var badge = "codewars";
-            // get and validate the name 
-            var name = newName || this.name; // defaults to name passed to init
-            if (this._validate.checkName(name)) { // check if name given is a string and not too long
-                // call api function
-                this._get["_" + badge + "API"](name, function(err, data) {
-                    // update the inner html of badge with all the info
-                    if (!err) {
-                        this._html.badgeDisplay(badge, data, name);
-                    } else if (err) {
-                        this._html.badgeError(badge); // error from api
-                    }
-                }.bind(this));
-            } else {
-                this._html.badgeError(badge); // error failed checkName
-            }
-            return this; // return this so can chain methods
+            // get the badge
+            return this.anyBadge(badge, newName);
         },
         // FreeCodeCamp badge
         freeCodeCamp: function(newName) {
             var badge = "freecodecamp";
-            // get and validate the name 
-            var name = newName || this.name; // defaults to name passed to init
-            if (this._validate.checkName(name)) { // check if name given is a string and not too long
-                // call api function
-                this._get["_" + badge + "API"](name, function(err, data) {
-                    // update the inner html of badge with all the info
-                    if (!err) {
-                        this._html.badgeDisplay(badge, data, name);
-                    } else if (err) {
-                        this._html.badgeError(badge); // error from api
-                    }
-                }.bind(this));
-            } else {
-                this._html.badgeError(badge); // error failed checkName
-            }
-            return this; // return this so can chain methods
+            // get the badge
+            return this.anyBadge(badge, newName);
         },
         // GitHub badge
         gitHub: function(newName) {
             var badge = "github";
-            // get and validate the name 
-            var name = newName || this.name; // defaults to name passed to init
-            if (this._validate.checkName(name)) { // check if name given is a string and not too long
-                // call api function
-                this._get["_" + badge + "API"](name, function(err, data) {
-                    // update the inner html of badge with all the info
-                    if (!err) {
-                        this._html.badgeDisplay(badge, data, name);
-                    } else if (err) {
-                        this._html.badgeError(badge); // error from api
-                    }
-                }.bind(this));
-            } else {
-                this._html.badgeError(badge); // error failed checkName
-            }
-            return this; // return this so can chain methods
+            // get the badge
+            return this.anyBadge(badge, newName);
         },
         // TreeHouse badge
         treeHouse: function(newName) {
             var badge = "treehouse";
-            // get and validate the name 
-            var name = newName || this.name; // defaults to name passed to init
-            if (this._validate.checkName(name)) { // check if name given is a string and not too long
-                // call api function
-                this._get["_" + badge + "API"](name, function(err, data) {
-                    // update the inner html of badge with all the info
-                    if (!err) {
-                        this._html.badgeDisplay(badge, data, name);
-                    } else if (err) {
-                        this._html.badgeError(badge); // error from api
-                    }
-                }.bind(this));
-            } else {
-                this._html.badgeError(badge); // error failed checkName
-            }
-            return this; // return this so can chain methods
+            // get the badge
+            return this.anyBadge(badge, newName);
         }
         
     };
