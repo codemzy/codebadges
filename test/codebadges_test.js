@@ -25,6 +25,12 @@ describe('codeBadges', function() {
             assert.equal(resultOne.lastName, "aNewName", 'Returned name should match');
             assert.equal(resultTwo.lastName, "codemzy", 'Returned name should be default as newName invalid');
         });
+        it('should only request api for valid badges', function() {
+            var resultOne = codeBadges("codemzy").anyBadge("freecodecamp");
+            var resultTwo = codeBadges("codemzy").anyBadge("afakebadge");
+            assert.equal(resultOne.lastBadge, "freecodecamp", 'Returned badge name should match');
+            assert.equal(resultTwo.lastBadge, false, 'Returned badge name should be false');
+        });
     });
 });
 
