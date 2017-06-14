@@ -5,6 +5,8 @@
   "main": "js/codebadges.js",
   "style": "css/codebadges.css",
   "scripts": {
+    "css-minify": "cleancss -o dist/codebadges.min.css css/codebadges.css",
+    "js-minify": "uglifyjs js/codebadges.js --compress warnings=false --mangle --output dist/codebadges.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +25,9 @@
   },
   "homepage": "https://codemzy.github.io/codebadges",
   "devDependencies": {
-    "chai": "^4.0.2",
-    "mocha": "^3.4.2"
+    "chai": "~4.0.2",
+    "clean-css-cli": "^4.1.5",
+    "mocha": "~3.4.2",
+    "uglify-js": "~3.0.15"
   }
 }
