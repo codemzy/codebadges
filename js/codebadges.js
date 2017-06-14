@@ -5,7 +5,7 @@
     // codeBadges function will return a codeBadges.init object with some default values
     var codeBadges = function(name) {
         // add the loading to any badges
-        $('.code-badge').html('<div class="outer"><div class="inner"><div id="loader"><div class="loading"></div><div id="loading-text">Loading...</div></div></div></div>');
+        $('.code-badge').html('<div class="outer"><div class="inner"><div class="loader"><div class="loading"></div><div class="loading-text">Loading...</div></div></div></div>');
         // return new codeBadges object with name property
         return new codeBadges.init(name);
     };
