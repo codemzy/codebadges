@@ -85,8 +85,9 @@
 
 .code-badge .loading-text {
   position: relative;
-  top: -110px;
+  top: -100px;
   z-index: 5;
+  line-height: 0px;
 }
 
 @-webkit-keyframes sk-bounce {
