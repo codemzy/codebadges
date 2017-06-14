@@ -1,5 +1,17 @@
 /* global jQuery */
 
+/*!
+ * codeBadges v1.0.0 (https://codemzy.github.io/codebadges)
+ * Copyright 2017 codemzy
+ * Licensed under MIT
+ */
+
+// require jQuery 
+if (typeof jQuery === 'undefined') {
+  throw new Error('codeBadges JavaScript requires jQuery. jQuery must be included before codeBadges JavaScript.');
+}
+
+// codeBadges
 (function(global, $) {
     
     // codeBadges function will return a codeBadges.init object with some default values
