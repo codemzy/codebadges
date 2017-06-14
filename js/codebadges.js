@@ -166,10 +166,12 @@
         
         // BADGE METHODS
         // Any badge
-        anyBadge: function(badge, newName) {
+        anyBadge: function(badgeName, newName) {
             // get and validate the name 
             var name = this._validate.checkName(newName) || this.name; // checks valid newName and defaults to original name
             this.lastName = name;
+            var badge = this._validate.checkBadge(badgeName);
+            this.lastBadge = badge;
             if (badge && name) { // check if badge and name given
                 // call api function
                 this._get["_" + badge + "API"](name, function(err, data) {
@@ -181,7 +183,7 @@
                     }
                 }.bind(this));
             } else {
-                this._html.badgeError(badge); // error failed checkName
+                this._html.badgeError(badge); // error failed name or badge
             }
             return this; // return this so can chain methods
         },
