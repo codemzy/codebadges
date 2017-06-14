@@ -152,6 +152,7 @@
         anyBadge: function(badge, newName) {
             // get and validate the name 
             var name = this._validate.checkName(newName) || this.name; // checks valid newName and defaults to original name
+            this.lastName = name;
             if (badge && name) { // check if badge and name given
                 // call api function
                 this._get["_" + badge + "API"](name, function(err, data) {

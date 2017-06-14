@@ -5,16 +5,27 @@ var assert = chai.assert;
 
 // MAIN
 describe('codeBadges', function() {
-  it('should return an object with the name passed as an argument', function() {
+    it('should return an object with the name passed as an argument', function() {
       var result = codeBadges("codemzy");
       assert.equal(result.name, 'codemzy', 'Returned name should match');
-  });
-  it('should only accept strings as names', function() {
+    });
+    it('should only accept strings as names', function() {
       var resultOne = codeBadges(123);
       var resultTwo = codeBadges({ an: 'object' });
       assert.equal(resultOne.name, undefined, 'Returned name should be undefined');
       assert.equal(resultTwo.name, undefined, 'Returned name should be undefined');
-  });
+    });
+    describe('anyBadge', function() {
+        it('should exist', function() {
+          assert.exists(codeBadges().anyBadge, 'anyBadge should exist');
+        });
+        it('should change a valid name', function() {
+            var resultOne = codeBadges("codemzy").anyBadge(false, "aNewName");
+            var resultTwo = codeBadges("codemzy").anyBadge(false, { an: 'object' });
+            assert.equal(resultOne.lastName, "aNewName", 'Returned name should match');
+            assert.equal(resultTwo.lastName, "codemzy", 'Returned name should be default as newName invalid');
+        });
+    });
 });
 
 // HTML
