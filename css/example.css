@@ -5,6 +5,11 @@
 
 /*STYLES FOR INDEX DEMO PAGE*/
 
+#cb-logo {
+    width: 100px;
+    height: 100px;
+}
+
 #share {
     padding: 30px;
     margin-top: 30px;
