@@ -10,6 +10,16 @@
         return new codeBadges.init(name);
     };
     
+    // BADGES
+    var badgeObj = {
+        "codecademy": true,
+        "codeschool": true,
+        "codewars": true,
+        "freecodecamp": true,
+        "github": true,
+        "treehouse": true
+    };
+    
     // HTML 
     // error html
     var errorHTML = '<div class="margin-top big">-</div><div class="small">-</div><div id="user">User</div><div class="small">Not Found</div>';
@@ -144,6 +154,13 @@
                     }
                 }
                 return false;
+            },
+            checkBadge: function(badgeName) {
+                if (badgeObj[badgeName]) {
+                    return badgeName;
+                } else {
+                    return false;
+                }
             }
         },
         
