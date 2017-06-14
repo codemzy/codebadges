@@ -36,13 +36,13 @@
   margin-top: 7%;
 }
 
-.code-badge .inner #user {
+.code-badge .inner .user {
   font-size: 200%;
   margin-top: 10%;
   font-family: 'Permanent Marker', cursive;
 }
 
-.code-badge .inner #user.smaller {
+.code-badge .inner .user.smaller {
   margin-top: 15%;
   font-size: 135%;
 }
