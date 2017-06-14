@@ -7,7 +7,7 @@
   "scripts": {
     "css-minify": "cleancss -o dist/codebadges.min.css css/codebadges.css",
     "js-minify": "uglifyjs js/codebadges.js --compress warnings=false --mangle --comments '/^!/' --output dist/codebadges.min.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha-phantomjs --ignore-ssl-errors=true --ssl-protocol=any test/testrunner.html || true"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "chai": "~4.0.2",
     "clean-css-cli": "~4.1.5",
     "mocha": "~3.4.2",
+    "mocha-phantomjs": "^4.1.0",
     "uglify-js": "~3.0.15"
   }
 }
