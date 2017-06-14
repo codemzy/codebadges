@@ -6,7 +6,7 @@
   "style": "css/codebadges.css",
   "scripts": {
     "css-minify": "cleancss -o dist/codebadges.min.css css/codebadges.css",
-    "js-minify": "uglifyjs js/codebadges.js --compress warnings=false --mangle --output dist/codebadges.min.js",
+    "js-minify": "uglifyjs js/codebadges.js --compress warnings=false --mangle --comments '/^!/' --output dist/codebadges.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
