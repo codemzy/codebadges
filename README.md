@@ -20,6 +20,7 @@ Hello developer... time to show off your progress and achievements!
 <!-- codeBadges minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/gh/codemzy/codebadges@1.0.0/dist/codebadges.min.js"></script>
 ```
+__Important:__ codeBadges JS relies on jQuery JS, so you need to load jQuery JS before codeBadges JS
 
 ### Usage
 
