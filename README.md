@@ -1,3 +1,4 @@
+<div align="center">
 
 # CODE BADGES
 
@@ -6,6 +7,8 @@ Hello developer... time to show off your progress and achievements!
 [See codeBadges in action](https://codemzy.github.io/codebadges)
 
 ![alt text](/img/example/codebadges_example.png "[codeBadges examples")
+
+</div>
 
 ### Get Started
 
