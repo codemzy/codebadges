@@ -27,7 +27,7 @@ __Important:__ codeBadges JS relies on jQuery JS, so you need to load jQuery JS 
 #### HTML.
 <b>Add a single badge...</b>
 ```html
-<div class="code-badge fcc"></div>
+<div class="code-badge freecodecamp"></div>
 ```
 <b>Or a row of badges...</b>
 ```html
@@ -72,7 +72,7 @@ In your own css, just add a code badge class for `.pink-badge` like the example 
 
 <b>Apply to your html...</b>
 ```html
-<div class="code-badge fcc pink-badge"></div>
+<div class="code-badge freecodecamp pink-badge"></div>
 ```
         
 ### Badges
