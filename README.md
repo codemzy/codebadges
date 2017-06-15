@@ -10,7 +10,7 @@
 
 Hello developer... time to show off your progress and achievements!
 
-[See the demo](https://codemzy.github.io/codebadges)
+[See codeBadges in action](https://codemzy.github.io/codebadges)
 
 ### Get Started
 
@@ -89,3 +89,9 @@ In your own css, just add a code badge class for `.pink-badge` like the example 
 
 Want a new badge adding? Send a request via the issues or submit a pull request.
 Don't forget to include your username on the requested site so it can featured. The site must have public profiles so that the user info can be requested via an api or scraped from a public profile page.
+
+### License
+
+The MIT License (MIT)
+
+Copyright (c) 2017 codemzy
