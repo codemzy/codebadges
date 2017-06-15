@@ -60,6 +60,7 @@ Just add the class `badge-small` to your badges to make them smaller.
 
 #### Custom colours.
 Got a strict colour scheme and want all your badges in pink? Who am I to judge?!
+
 <b>Add your own classes...</b>
 ```css
 .code-badge.pink-badge .outer {
@@ -67,6 +68,7 @@ Got a strict colour scheme and want all your badges in pink? Who am I to judge?!
 }
 ```
 In your own css, just add a code badge class for `.pink-badge` like the example above.
+
 <b>Apply to your html...</b>
 ```html
 <div class="code-badge fcc pink-badge"></div>
