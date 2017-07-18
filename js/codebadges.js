@@ -76,11 +76,12 @@ if (typeof jQuery === 'undefined') {
                 });
             },
             _codewarsAPI: function(name, callback) {
-                var url = 'https://allorigins.us/get?url=' + encodeURIComponent('https://www.codewars.com/users/') + name + '&callback=?'; // scraping via allorigins due to CORS
+                var url = 'https://cors.now.sh/' + 'https://www.codewars.com/users/' + name; // scraping via cors.now.sh due to CORS
                 $.get(url, function(data){
-                    var points = data.contents.match(/Honor:<\/b>(.+?)<\/div>/m)[1];
-                    var kyu = data.contents.match(/Rank:<\/b>(.+?)<\/div>/m)[1];
-                    var date = data.contents.match(/Member Since:<\/b>(.+?)<\/div>/m)[1].split(" ")[1];
+                    console.log(data);
+                    var points = data.match(/Honor:<\/b>(.+?)<\/div>/m)[1];
+                    var kyu = data.match(/Rank:<\/b>(.+?)<\/div>/m)[1];
+                    var date = data.match(/Member Since:<\/b>(.+?)<\/div>/m)[1].split(" ")[1];
                     callback(false, { top: parseInt(points, 10), top_type: "honor", user_type: "CodeWars Member", bottom: kyu, bottom_type: "Rank", date: date });
                 }).fail(function() {
                     callback("error");
