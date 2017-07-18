@@ -1,6 +1,6 @@
 {
   "name": "codebadges",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Badges to show off your progress at GitHub, FreeCodeCamp, CodeSchool, Codecademy, Treehouse etc",
   "main": "js/codebadges.js",
   "style": "css/codebadges.css",
