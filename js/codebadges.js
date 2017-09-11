@@ -78,7 +78,6 @@ if (typeof jQuery === 'undefined') {
             _codewarsAPI: function(name, callback) {
                 var url = 'https://cors.now.sh/' + 'https://www.codewars.com/users/' + name; // scraping via cors.now.sh due to CORS
                 $.get(url, function(data){
-                    console.log(data);
                     var points = data.match(/Honor:<\/b>(.+?)<\/div>/m)[1];
                     var kyu = data.match(/Rank:<\/b>(.+?)<\/div>/m)[1];
                     var date = data.match(/Member Since:<\/b>(.+?)<\/div>/m)[1].split(" ")[1];
@@ -88,7 +87,7 @@ if (typeof jQuery === 'undefined') {
                 });
             },
             _freecodecampAPI: function(name, callback) {
-                var url = 'https://www.freecodecamp.com/' + name; // request user data from FCC (no api so scraping off user page)
+                var url = 'https://www.freecodecamp.org/' + name; // request user data from FCC (no api so scraping off user page)
                 $.get(url, function(response) {
                     var points = response.match(/<h1 class="flat-top text-primary">\[ ([\s|\S]*?) \]<\/h1>/)[1];
                     var challenges = response.replace(/<thead>[\s|\S]*?<\/thead>/g).match(/<tr>/g).length + " challenges";
