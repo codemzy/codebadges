@@ -1,8 +1,8 @@
 /* global jQuery */
 
 /*!
- * codeBadges v1.0.2 (https://codemzy.github.io/codebadges)
- * Copyright 2017 codemzy
+ * codeBadges v1.0.3 (https://codemzy.github.io/codebadges)
+ * Copyright 2018 codemzy
  * Licensed under MIT
  */
 
@@ -81,7 +81,7 @@ if (typeof jQuery === 'undefined') {
                     var points = data.match(/Honor:<\/b>(.+?)<\/div>/m)[1];
                     var kyu = data.match(/Rank:<\/b>(.+?)<\/div>/m)[1];
                     var date = data.match(/Member Since:<\/b>(.+?)<\/div>/m)[1].split(" ")[1];
-                    callback(false, { top: parseInt(points, 10), top_type: "honor", user_type: "CodeWars Member", bottom: kyu, bottom_type: "Rank", date: date });
+                    callback(false, { top: points, top_type: "honor", user_type: "CodeWars Member", bottom: kyu, bottom_type: "Rank", date: date });
                 }).fail(function() {
                     callback("error");
                 });
