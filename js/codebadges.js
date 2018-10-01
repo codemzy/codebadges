@@ -1,7 +1,7 @@
 /* global jQuery */
 
 /*!
- * codeBadges v1.0.3 (https://codemzy.github.io/codebadges)
+ * codeBadges v1.0.4 (https://codemzy.github.io/codebadges)
  * Copyright 2018 codemzy
  * Licensed under MIT
  */
@@ -76,7 +76,7 @@ if (typeof jQuery === 'undefined') {
                 });
             },
             _codewarsAPI: function(name, callback) {
-                var url = 'https://cors.now.sh/' + 'https://www.codewars.com/users/' + name; // scraping via cors.now.sh due to CORS
+                var url = 'https://cors-anywhere.herokuapp.com/' + 'https://www.codewars.com/users/' + name; // scraping via cors.now.sh due to CORS
                 $.get(url, function(data){
                     var points = data.match(/Honor:<\/b>(.+?)<\/div>/m)[1];
                     var kyu = data.match(/Rank:<\/b>(.+?)<\/div>/m)[1];
