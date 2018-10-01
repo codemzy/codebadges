@@ -1,7 +1,7 @@
 /* global jQuery */
 
 /*!
- * codeBadges v1.0.3 (https://codemzy.github.io/codebadges)
+ * codeBadges v1.0.4 (https://codemzy.github.io/codebadges)
  * Copyright 2018 codemzy
  * Licensed under MIT
  */

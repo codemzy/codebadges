@@ -16,9 +16,9 @@ Hello developer... time to show off your progress and achievements!
 
 ```html
 <!-- codeBadges minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codemzy/codebadges@1.0.3/dist/codebadges.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codemzy/codebadges@1.0.4/dist/codebadges.min.css">
 <!-- codeBadges minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/gh/codemzy/codebadges@1.0.3/dist/codebadges.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/codemzy/codebadges@1.0.4/dist/codebadges.min.js"></script>
 ```
 __Important:__ codeBadges JS relies on jQuery JS, so you need to load jQuery JS before codeBadges JS
 
@@ -95,4 +95,4 @@ Don't forget to include your username on the requested site so it can featured. 
 
 The MIT License (MIT)
 
-Copyright (c) 2017 codemzy
+Copyright (c) 2018 codemzy
